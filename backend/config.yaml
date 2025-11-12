@@ -1,0 +1,57 @@
+# 数据库配置
+database:
+  host: 192.168.20.48 # 数据库地址
+  port: 5432 # 端口
+  user: root # 用户名
+  password: "123456" # 密码
+
+# 定时任务配置
+scheduler:
+  thread_num: 10  # 启动线程数量
+  process_num: 1 # 启动进程数量
+  max_instances: 3 # 最大同时执行数量
+
+excel_file : F:\data-exploration\data_resources\
+
+ai_excel_file : F:\data-exploration\backend\template\AI_result\
+
+report_file : F:\data-exploration-python\xshl-data-exploration-python\xshl-data-exploration-python\check_files\
+
+llm_url : 'http://100.200.40.71:30080'
+
+UPLOAD_FOLDER : F:\data-exploration\backups\
+
+sms_config : {
+        "openEnable": True,
+        "messageUrl": "http://182.129.202.234:20083/pr-api/system/sendMsg/batch",
+        "messageAppId": "f17806f3bdee4df9ab2ef1025192ea66",
+        "messageAppKey": "qfR0wpiQLMecIMp2S9mEJffQ1wTQFmeJ",
+        "templateMapping": {
+            1: "de93769423184975b5de3c94c0e9bfc9",
+            2: "cafb0e0dd1af47de8981b5ee65562795"
+        }
+    }
+
+access_key: ''
+api_key : ''
+app_id : ''
+
+# openai配置
+openai:
+  api_key: sk-6m5vyo0T9iZ3Sx8NKbGcHxPE5Xe3eHS5TeC8H3QleE3t7Xl5
+  api_base: https://api.chatanywhere.tech/v1
+  model: gpt3.5-turbo
+  temperature: 0
+  max_tokens: 4000
+
+# redis 配置
+redis:
+  host: 127.0.0.1
+#  host: 192.168.20.48
+  is_password: True
+  password: xshl2023
+  port: 6379
+
+SECRET_KEY : Pd0MIJCX_4SOcfOWxzbS27MPpHQMmzRXFibcvZV_r8I
+
+thread : 5

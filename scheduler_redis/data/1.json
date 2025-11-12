@@ -1,0 +1,164 @@
+{
+    "table_name": "ZZ_LTT_GRP_0726_1",
+    "table_comment": null,
+    "data_total": 1120722,
+    "constraints_column": "ID",
+    "column_list": [
+        {
+            "table_name": "ZZ_LTT_GRP_0726_1",
+            "name": "姓名",
+            "data_type": "VARCHAR2",
+            "data_length": 150,
+            "data_precision": null,
+            "data_scale": 0,
+            "nullable": "Y",
+            "column_id": 1,
+            "comments": null
+        },
+        {
+            "table_name": "ZZ_LTT_GRP_0726_1",
+            "name": "性别",
+            "data_type": "VARCHAR2",
+            "data_length": 1,
+            "data_precision": null,
+            "data_scale": 0,
+            "nullable": "Y",
+            "column_id": 2,
+            "comments": null
+        },
+        {
+            "table_name": "ZZ_LTT_GRP_0726_1",
+            "name": "身份证",
+            "data_type": "VARCHAR2",
+            "data_length": 100,
+            "data_precision": null,
+            "data_scale": 0,
+            "nullable": "Y",
+            "column_id": 3,
+            "comments": null
+        },
+        {
+            "table_name": "ZZ_LTT_GRP_0726_1",
+            "name": "联系电话",
+            "data_type": "VARCHAR2",
+            "data_length": 100,
+            "data_precision": null,
+            "data_scale": 0,
+            "nullable": "Y",
+            "column_id": 4,
+            "comments": null
+        },
+        {
+            "table_name": "ZZ_LTT_GRP_0726_1",
+            "name": "人员类别",
+            "data_type": "VARCHAR2",
+            "data_length": 10,
+            "data_precision": null,
+            "data_scale": 0,
+            "nullable": "Y",
+            "column_id": 5,
+            "comments": null
+        },
+        {
+            "table_name": "ZZ_LTT_GRP_0726_1",
+            "name": "是否悬挂",
+            "data_type": "VARCHAR2",
+            "data_length": 1,
+            "data_precision": null,
+            "data_scale": 0,
+            "nullable": "Y",
+            "column_id": 6,
+            "comments": null
+        },
+        {
+            "table_name": "ZZ_LTT_GRP_0726_1",
+            "name": "悬挂申请时间",
+            "data_type": "VARCHAR",
+            "data_length": 10,
+            "data_precision": null,
+            "data_scale": 0,
+            "nullable": "Y",
+            "column_id": 7,
+            "comments": null
+        },
+        {
+            "table_name": "ZZ_LTT_GRP_0726_1",
+            "name": "悬挂时间",
+            "data_type": "VARCHAR",
+            "data_length": 10,
+            "data_precision": null,
+            "data_scale": 0,
+            "nullable": "Y",
+            "column_id": 8,
+            "comments": null
+        },
+        {
+            "table_name": "ZZ_LTT_GRP_0726_1",
+            "name": "悬挂区划代码",
+            "data_type": "VARCHAR2",
+            "data_length": 12,
+            "data_precision": null,
+            "data_scale": 0,
+            "nullable": "Y",
+            "column_id": 9,
+            "comments": null
+        },
+        {
+            "table_name": "ZZ_LTT_GRP_0726_1",
+            "name": "悬挂地址",
+            "data_type": "VARCHAR2",
+            "data_length": 255,
+            "data_precision": null,
+            "data_scale": 0,
+            "nullable": "Y",
+            "column_id": 10,
+            "comments": null
+        },
+        {
+            "table_name": "ZZ_LTT_GRP_0726_1",
+            "name": "悬挂详细地址",
+            "data_type": "VARCHAR2",
+            "data_length": 300,
+            "data_precision": null,
+            "data_scale": 0,
+            "nullable": "Y",
+            "column_id": 11,
+            "comments": null
+        },
+        {
+            "table_name": "ZZ_LTT_GRP_0726_1",
+            "name": "户籍地区划代码",
+            "data_type": "VARCHAR2",
+            "data_length": 32,
+            "data_precision": null,
+            "data_scale": 0,
+            "nullable": "Y",
+            "column_id": 12,
+            "comments": null
+        },
+        {
+            "table_name": "ZZ_LTT_GRP_0726_1",
+            "name": "户籍地址",
+            "data_type": "VARCHAR2",
+            "data_length": 255,
+            "data_precision": null,
+            "data_scale": 0,
+            "nullable": "Y",
+            "column_id": 13,
+            "comments": null
+        },
+        {
+            "table_name": "ZZ_LTT_GRP_0726_1",
+            "name": "户籍地详细地址",
+            "data_type": "VARCHAR2",
+            "data_length": 300,
+            "data_precision": null,
+            "data_scale": 0,
+            "nullable": "Y",
+            "column_id": 14,
+            "comments": null
+        }
+    ]
+}
+
+{'table_name': 'BASEINFO_PEOPLE_BAC', 'table_comment': '人员基本信息', 'data_total': 0, 'constraints_column': 'ID', 'column_list': [{'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'PEOPLE_ID', 'data_type': 'VARCHAR', 'data_length': 32, 'data_precision': None, 'data_scale': 0, 'nullable': 'N', 'column_id': 1, 'comments': '用户编码'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'FAMILY_ID', 'data_type': 'VARCHAR', 'data_length': 32, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 2, 'comments': '家庭编码'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'RELATIONSHIP_TYPE', 'data_type': 'VARCHAR', 'data_length': 2, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 3, 'comments': '户主关系代码'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'DOMICILE_CODE', 'data_type': 'VARCHAR', 'data_length': 12, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 4, 'comments': '属地行政区划'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'APANAGE_CODE', 'data_type': 'VARCHAR', 'data_length': 12, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 5, 'comments': '住址行政区划'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'NAME', 'data_type': 'VARCHAR', 'data_length': 50, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 6, 'comments': '姓名'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'ID_CARD_TYPE', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 7, 'comments': '身份证件类型代码'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'ID_CARD', 'data_type': 'VARCHAR', 'data_length': 18, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 8, 'comments': '身份证件号码'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'PHOTO', 'data_type': 'TEXT', 'data_length': 2147483647, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 9, 'comments': None}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'SEX', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 10, 'comments': '性别'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'NATION', 'data_type': 'VARCHAR', 'data_length': 2, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 11, 'comments': '民族'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'EDU_CODE', 'data_type': 'VARCHAR', 'data_length': 2, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 12, 'comments': '文化程度代码'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'HEALTH_CODE', 'data_type': 'VARCHAR', 'data_length': 2, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 13, 'comments': '健康状况代码'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'MARRIAGE_CODE', 'data_type': 'VARCHAR', 'data_length': 2, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 14, 'comments': '婚姻状况代码'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'CAREER_CODE', 'data_type': 'VARCHAR', 'data_length': 2, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 15, 'comments': '职业代码'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'POLITICAL_CODE', 'data_type': 'VARCHAR', 'data_length': 2, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 16, 'comments': '政治面貌代码'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'DOMICILE_TYPE', 'data_type': 'VARCHAR', 'data_length': 2, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 17, 'comments': '户籍类别代码'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'TEL_MOBILE', 'data_type': 'VARCHAR', 'data_length': 20, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 18, 'comments': '联系方式_手机'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'TEL_OTHER', 'data_type': 'VARCHAR', 'data_length': 50, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 19, 'comments': '联系方式_其他'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'ADDRESS', 'data_type': 'VARCHAR', 'data_length': 200, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 20, 'comments': '住址'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'POST_CODE', 'data_type': 'VARCHAR', 'data_length': 6, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 21, 'comments': '邮政编码'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'INCOME_YEAR', 'data_type': 'DEC', 'data_length': 22, 'data_precision': Decimal('16'), 'data_scale': 2, 'nullable': 'Y', 'column_id': 22, 'comments': '年收入'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'INCOME_MONTH', 'data_type': 'DEC', 'data_length': 22, 'data_precision': Decimal('16'), 'data_scale': 2, 'nullable': 'Y', 'column_id': 23, 'comments': '月收入'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'EMPLOYMENT_CODE', 'data_type': 'VARCHAR', 'data_length': 2, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 24, 'comments': ' 就业状况代码'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'WORK_UNIT_NAME', 'data_type': 'VARCHAR', 'data_length': 100, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 25, 'comments': '工作单位_名称'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'WORK_UNIT_CHARACTER', 'data_type': 'VARCHAR', 'data_length': 2, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 26, 'comments': '工作单位_性质'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'WORK_UNIT_TEL', 'data_type': 'VARCHAR', 'data_length': 20, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 27, 'comments': '工作单位_电话'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'WORK_UNIT_ADD', 'data_type': 'VARCHAR', 'data_length': 200, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 28, 'comments': '工作单位_地址'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'SAFEGUARD_TYPE', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 29, 'comments': ' 医疗保障方式的代码'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'MEDICAL_CODE', 'data_type': 'VARCHAR', 'data_length': 30, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 30, 'comments': ' 医疗保险号'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'NOTE', 'data_type': 'TEXT', 'data_length': 2147483647, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 31, 'comments': '备注'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'CITY_RESI_FLAG', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 32, 'comments': '城市低保标志'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'RURAL_RESI_FLAG', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 33, 'comments': '农村低保标志'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'RURAL_FIVEGUA_FLAG', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 34, 'comments': '农村五保标志'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'DISABILITY_FLAG', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 35, 'comments': '伤残标志'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'DISABILITY_LEVEL_CODE', 'data_type': 'VARCHAR', 'data_length': 2, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 36, 'comments': '伤残等级'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'DISABILITY_CASE_CODE', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 37, 'comments': '伤残性质代码'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'REDA_FLAG', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 38, 'comments': '三红标志'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'DEPENDANT_FLAG', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 39, 'comments': '遗属标志'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'DEMOBILIZED_FLAG', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 40, 'comments': '在乡复员军人标志'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'WAR_FLAG', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 41, 'comments': ' 参战、参试标志'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'HANDICAP_FLAG', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 42, 'comments': '残疾标志'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'DISABILITY_NO', 'data_type': 'VARCHAR', 'data_length': 40, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 43, 'comments': ' 伤残证书编号'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'REDA_NO', 'data_type': 'VARCHAR', 'data_length': 20, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 44, 'comments': '三红证书编号'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'DEPENDANT_NO', 'data_type': 'VARCHAR', 'data_length': 40, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 45, 'comments': '遗属证书编号'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'DEMOBILIZED_NO', 'data_type': 'VARCHAR', 'data_length': 40, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 46, 'comments': '在乡复员军人证书编号'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'WAR_NO', 'data_type': 'VARCHAR', 'data_length': 40, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 47, 'comments': '参战参试证书编号'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'DISABILITY_STATE_CODE', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 48, 'comments': '伤残状态代码-6为不予评定'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'REDA_STATE_CODE', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 49, 'comments': '三红状态代码'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'DEPENDANT_STATE_CODE', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 50, 'comments': '遗属状态代码'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'DEMOBILIZED_STATE_CODE', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 51, 'comments': '在乡复员军人状态代码'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'WAR_STATE_CODE', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 52, 'comments': '参战、参试状态代码'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'PERSONAL_STATS_TAG', 'data_type': 'VARCHAR', 'data_length': 2, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 53, 'comments': '个人状态标志新增0迁出2'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'REG_ID', 'data_type': 'VARCHAR', 'data_length': 32, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 54, 'comments': '录入人ID'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'REG_TIME', 'data_type': 'TIMESTAMP', 'data_length': 8, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 55, 'comments': '录入时间'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'MOD_ID', 'data_type': 'VARCHAR', 'data_length': 32, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 56, 'comments': '修改人ID'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'MOD_TIME', 'data_type': 'TIMESTAMP', 'data_length': 8, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 57, 'comments': '修改时间'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'PHOTO_ID', 'data_type': 'VARCHAR', 'data_length': 50, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 58, 'comments': '照片ID'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'IS_DEL', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 59, 'comments': '删除标志-当值为9的时候，代表该人员是伤残的涉核人员'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'CHECK_ID', 'data_type': 'VARCHAR', 'data_length': 32, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 60, 'comments': '审核人ID'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'CHECK_PEOPLE', 'data_type': 'VARCHAR', 'data_length': 32, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 61, 'comments': '审核人名称'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'CHECK_ORG', 'data_type': 'VARCHAR', 'data_length': 32, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 62, 'comments': '审核单位ID'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'CHECK_ORG_NAME', 'data_type': 'VARCHAR', 'data_length': 100, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 63, 'comments': '审核单位名称'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'CHECK_ORG_AREA', 'data_type': 'VARCHAR', 'data_length': 12, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 64, 'comments': '审核单位区划'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'CHECK_TIME', 'data_type': 'VARCHAR', 'data_length': 19, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 65, 'comments': '审核时间'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'CHECK_FLAG', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 66, 'comments': '审核标志'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'MOD_PEOPLE', 'data_type': 'VARCHAR', 'data_length': 32, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 67, 'comments': '修改人姓名'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'MOD_ORG', 'data_type': 'VARCHAR', 'data_length': 32, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 68, 'comments': '修改单位ID'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'MOD_ORG_NAME', 'data_type': 'VARCHAR', 'data_length': 100, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 69, 'comments': '修改单位名称'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'MOD_ORG_AREA', 'data_type': 'VARCHAR', 'data_length': 12, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 70, 'comments': '修改单位区划'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'REG_PEOPLE', 'data_type': 'VARCHAR', 'data_length': 32, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 71, 'comments': '录入人姓名'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'REG_ORG', 'data_type': 'VARCHAR', 'data_length': 32, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 72, 'comments': '录入人单位ID'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'REG_ORG_NAME', 'data_type': 'VARCHAR', 'data_length': 100, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 73, 'comments': '录入人单位名称'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'REG_ORG_AREA', 'data_type': 'VARCHAR', 'data_length': 12, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 74, 'comments': '录入人单位区划'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'BPT_TYPE', 'data_type': 'VARCHAR', 'data_length': 2, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 75, 'comments': '优抚对象类型'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'BPT_NUM', 'data_type': 'DEC', 'data_length': 22, 'data_precision': Decimal('9'), 'data_scale': 2, 'nullable': 'Y', 'column_id': 76, 'comments': None}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'PENSION_CODE', 'data_type': 'CHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 77, 'comments': ' 养老保障方式'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'DOMICILE_ADDRESS', 'data_type': 'VARCHAR', 'data_length': 200, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 78, 'comments': '属地居住地址(户口簿)'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'PHONETIC_CODE', 'data_type': 'VARCHAR', 'data_length': 200, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 79, 'comments': '拼音码'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'HANDICAP_NUM', 'data_type': 'VARCHAR', 'data_length': 30, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 80, 'comments': None}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'RETIRED_FLAG', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 81, 'comments': '60周岁以上农村籍退役士兵标志'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'RETIRED_STATE_CODE', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 82, 'comments': '60周岁以上农村籍退役士兵状态'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'RETIRED_NO', 'data_type': 'VARCHAR', 'data_length': 40, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 83, 'comments': '60周岁以上农村籍退役士兵证书编号'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'MARTYR_OFFSPRING_FLAG', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 84, 'comments': '烈士子女1与被错杀烈士子女2标识'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'MARTYR_OFFSPRING_STATE_CODE', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 85, 'comments': '烈士子女状态'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'MARTYR_OFFSPRING_NO', 'data_type': 'VARCHAR', 'data_length': 40, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 86, 'comments': '烈士子女证书编号'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'DOMICILE_NAME', 'data_type': 'VARCHAR', 'data_length': 100, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 87, 'comments': '属地行政区划名称'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'APANAGE_NAME', 'data_type': 'VARCHAR', 'data_length': 100, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 88, 'comments': '住址行政区划'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'HAVE_NEW_CARD', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 89, 'comments': '是否使用二代身份证扫描件'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'TOWN_STRU_ID', 'data_type': 'VARCHAR', 'data_length': 50, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 90, 'comments': '县级struId'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'CITY_STRU_ID', 'data_type': 'VARCHAR', 'data_length': 50, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 91, 'comments': '市级struId'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'IF_PUBLICY', 'data_type': 'VARCHAR', 'data_length': 1, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 92, 'comments': '是否退回公示'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'BIRTHDAY', 'data_type': 'TIMESTAMP', 'data_length': 8, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 93, 'comments': None}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'IS_OVERSEAS', 'data_type': 'VARCHAR', 'data_length': 2, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 94, 'comments': '是否海外优抚对象1是2 否'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'OVERSEAS_ADDS', 'data_type': 'VARCHAR', 'data_length': 200, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 95, 'comments': '海外优抚对象地址'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'PHOTOIMG', 'data_type': 'TEXT', 'data_length': 2147483647, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 96, 'comments': '身份证扫描件'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'ID', 'data_type': 'VARCHAR', 'data_length': 32, 'data_precision': None, 'data_scale': 0, 'nullable': 'N', 'column_id': 97, 'comments': '主键'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'CUSER', 'data_type': 'VARCHAR', 'data_length': 50, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 98, 'comments': '删除人姓名'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'CUSER_ID', 'data_type': 'VARCHAR', 'data_length': 50, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 99, 'comments': '删除人id'}, {'table_name': 'BASEINFO_PEOPLE_BAC', 'name': 'CTIME', 'data_type': 'TIMESTAMP', 'data_length': 8, 'data_precision': None, 'data_scale': 0, 'nullable': 'Y', 'column_id': 100, 'comments': '删除时间'}]}
