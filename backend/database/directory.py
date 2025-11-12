@@ -1,0 +1,67 @@
+from backend.config import db
+from sqlalchemy.dialects.postgresql import TIMESTAMP
+
+class DataDirectory(db.Model):
+    __tablename__ = 'biz_data_directory'
+
+    id = db.Column(db.BigInteger, primary_key=True)
+    datasource_id = db.Column(db.BigInteger)
+    table_id = db.Column(db.BigInteger)
+    create_id = db.Column(db.BigInteger)
+    status = db.Column(db.BigInteger)
+    create_time = db.Column(TIMESTAMP(timezone=True))
+    update_time = db.Column(TIMESTAMP(timezone=True))
+    system_id = db.Column(db.BigInteger)
+    data_level = db.Column(db.BigInteger)
+    summary = db.Column(db.TEXT)
+    up_cycle = db.Column(db.String(255))
+    data_zie = db.Column(db.String(255))
+    cn_name = db.Column(db.String(255))
+    contents_code = db.Column(db.String(255))
+    en_name = db.Column(db.String(255))
+    data_source_type = db.Column(db.String(255))
+    data_processing = db.Column(db.String(255))
+    data_scope = db.Column(db.String(255))
+    data_start_date_scope = db.Column(db.String(255))
+    data_end_date_scope = db.Column(db.String(255))
+    contact = db.Column(db.String(255))
+    phone = db.Column(db.String(255))
+    email = db.Column(db.String(255))
+    data_version = db.Column(db.BigInteger)
+    data_provider = db.Column(db.String(255))
+    ywy_id = db.Column(db.String(255))
+    zty_id = db.Column(db.String(255))
+    ydx_id = db.Column(db.String(255))
+    ywy_name = db.Column(db.String(255))
+    zty_name = db.Column(db.String(255))
+    ydx_name = db.Column(db.String(255))
+    commit_time = db.Column(db.String(255))
+    data_version_time = db.Column(TIMESTAMP(timezone=True))
+    history = db.Column(db.Boolean)
+    dept_id = db.Column(db.BigInteger)
+    build_directory = db.Column(db.Boolean)
+    build_directory_result = db.Column(db.TEXT)
+    build_directory_time = db.Column(TIMESTAMP(timezone=True))
+    parent_dept_id = db.Column(db.BigInteger)
+    datasource_name = db.Column(db.String(255))
+    creator_name = db.Column(db.String(255))
+    system_name = db.Column(db.String(255))
+    dept_name = db.Column(db.String(255))
+    main_version_id = db.Column(db.BigInteger)
+    data_storage_capacity = db.Column(db.BigInteger)
+    data_source_mode = db.Column(db.String(255))
+    # id = db.Column(db.BigInteger, primary_key=True, autoincrement=True)
+
+
+class DataDirectoryItem(db.Model):
+    __tablename__ = 'biz_data_directory_item'
+
+    id = db.Column(db.BigInteger, primary_key=True)
+    table_info_id = db.Column(db.BigInteger)
+    field_id = db.Column(db.BigInteger)
+    en_name = db.Column(db.String(255))
+    item_name = db.Column(db.String(255))
+    item_type = db.Column(db.String(255))
+    primary_keys = db.Column(db.Boolean)
+    data_directory_id = db.Column(db.BigInteger)
+

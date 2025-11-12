@@ -1,0 +1,38 @@
+2024-12-25 16:37:01,604 - my_logger - INFO - oracle数据每月循环 execute sussess
+2024-12-25 17:07:34,956 - my_logger - INFO - oracle数据每月循环 execute sussess
+2024-12-25 17:08:59,977 - my_logger - INFO - oracle数据每月循环 execute sussess
+2024-12-25 17:42:45,143 - my_logger - INFO - oracle数据每月循环 execute sussess
+2024-12-25 17:44:29,467 - my_logger - INFO - oracle数据每月循环 execute sussess
+2024-12-25 17:55:00,822 - my_logger - ERROR - 'NoneType' object has no attribute 'id'
+2024-12-25 17:56:02,833 - my_logger - ERROR - 'Job identifier (47) conflicts with an existing job'
+2024-12-25 17:56:08,972 - my_logger - ERROR - 'No job by the id of 48 was found'
+2024-12-25 17:56:32,910 - my_logger - INFO - oracle数据每月循环 add schedule sussess
+2024-12-25 17:57:00,608 - my_logger - ERROR - 'No job by the id of 49 was found'
+2024-12-25 17:57:15,487 - my_logger - ERROR - 'Job identifier (49) conflicts with an existing job'
+2024-12-25 17:57:28,114 - my_logger - ERROR - 'NoneType' object has no attribute 'schedule_name'
+2024-12-25 17:57:36,921 - my_logger - INFO - oracle数据每月循环 add schedule sussess
+2024-12-25 18:00:22,967 - my_logger - ERROR - 'No job by the id of 50 was found'
+2024-12-25 18:00:25,573 - my_logger - ERROR - 'Job identifier (50) conflicts with an existing job'
+2024-12-25 18:00:47,269 - my_logger - INFO - 50 delete sussess
+2024-12-25 18:00:53,543 - my_logger - ERROR - 'Job identifier (50) conflicts with an existing job'
+2024-12-25 18:01:37,186 - my_logger - INFO - 50 delete sussess
+2024-12-25 18:01:38,898 - my_logger - ERROR - 'Job identifier (50) conflicts with an existing job'
+2024-12-25 18:02:37,872 - my_logger - ERROR - 'Job identifier (47) conflicts with an existing job'
+2024-12-25 18:02:40,039 - my_logger - INFO - 47 delete sussess
+2024-12-25 18:02:41,638 - my_logger - INFO - lijiachong add schedule sussess
+2024-12-25 18:02:43,210 - my_logger - INFO - 47 delete sussess
+2024-12-25 18:02:52,118 - my_logger - INFO - 50 delete sussess
+2024-12-25 18:02:53,375 - my_logger - INFO - oracle数据每月循环 add schedule sussess
+2024-12-26 10:10:09,883 - my_logger - INFO - lijiachong execute sussess
+2024-12-26 10:10:10,654 - my_logger - INFO - oracle数据每月循环 execute sussess
+2024-12-26 10:10:11,517 - my_logger - INFO - lijiachong execute sussess
+2024-12-26 10:10:12,345 - my_logger - INFO - oracle数据每月循环 execute sussess
+2024-12-26 10:12:38,194 - my_logger - INFO - lijiachong execute sussess
+2024-12-26 10:12:39,448 - my_logger - INFO - oracle数据每月循环 execute sussess
+2024-12-26 10:12:40,307 - my_logger - INFO - lijiachong execute sussess
+2024-12-26 10:36:19,372 - my_logger - INFO - lijiachong execute sussess
+2024-12-26 10:36:19,801 - my_logger - INFO - lijiachong execute sussess
+2024-12-26 10:36:20,216 - my_logger - INFO - lijiachong execute sussess
+2024-12-26 10:36:21,462 - my_logger - INFO - oracle数据每月循环 execute sussess
+2024-12-26 10:36:21,881 - my_logger - INFO - oracle数据每月循环 execute sussess
+2024-12-26 10:36:22,310 - my_logger - INFO - oracle数据每月循环 execute sussess

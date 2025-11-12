@@ -1,0 +1,730 @@
+2025-08-11 17:41:10,488 INFO NumExpr defaulting to 6 threads.
+2025-08-11 17:41:11,521 INFO Scheduler started
+2025-08-11 17:41:16,558 INFO {'datasource_id': 96, 'minute': '10', 'hour': '17', 'method': 'day', 'schedule_name': '123', 'schedule_type': 'data_quality'}
+2025-08-11 17:41:16,830 INFO Added job "123" to job store "default"
+2025-08-11 20:04:00,016 INFO Running job "0255cade-2487-4899-8e8f-9c0619abb2fe (trigger: cron[hour='20', minute='4'], next run at: 2025-08-11 20:04:00 CST)" (scheduled at 2025-08-11 20:04:00+08:00)
+2025-08-11 20:04:00,179 INFO SELECT COUNT(1) FROM public.biz_data_directory_ship_desc
+2025-08-11 20:07:47,837 INFO SELECT COUNT(1) FROM public.biz_field_history_info
+2025-08-11 20:07:50,640 INFO SELECT COUNT(1) FROM public.biz_data_resources_download_log
+2025-08-11 20:07:52,047 INFO SELECT COUNT(1) FROM public.sys_dept
+2025-08-11 20:07:56,141 INFO SELECT COUNT(1) FROM public.sys_user_post
+2025-08-11 20:07:56,830 INFO SELECT COUNT(1) FROM public.sys_user_role
+2025-08-11 20:07:57,530 INFO SELECT COUNT(1) FROM public.biz_table_history_info
+2025-08-11 20:07:59,950 INFO SELECT COUNT(1) FROM public.gen_table_column
+2025-08-11 20:08:05,152 INFO SELECT COUNT(1) FROM public.apscheduler_jobs
+2025-08-11 20:08:06,055 INFO SELECT COUNT(1) FROM public.undo_log
+2025-08-11 20:08:07,847 INFO SELECT COUNT(1) FROM public.sys_user
+2025-08-11 20:08:12,932 INFO SELECT COUNT(1) FROM public.sys_user_login_info
+2025-08-11 20:08:14,924 INFO SELECT COUNT(1) FROM public.sys_external_app
+2025-08-11 20:08:16,487 INFO SELECT COUNT(1) FROM public.sys_logininfor
+2025-08-11 20:08:19,357 INFO SELECT COUNT(1) FROM public.sys_log
+2025-08-11 20:08:24,490 INFO SELECT COUNT(1) FROM public.biz_data_resources_auth
+2025-08-11 20:08:25,832 INFO SELECT COUNT(1) FROM public.biz_table_info
+2025-08-11 20:08:28,429 INFO SELECT COUNT(1) FROM public.quality_rule
+2025-08-11 20:08:29,379 INFO SELECT COUNT(1) FROM public.sys_tenant
+2025-08-11 20:08:33,995 INFO SELECT COUNT(1) FROM public.sys_tenant_package
+2025-08-11 20:08:36,804 INFO SELECT COUNT(1) FROM public.configure_rule_info
+2025-08-11 20:08:38,582 INFO SELECT COUNT(1) FROM public.biz_data_directory_item
+2025-08-11 20:08:40,578 INFO SELECT COUNT(1) FROM public.biz_data_directory
+2025-08-11 20:08:51,256 INFO SELECT COUNT(1) FROM public.llm_monitor
+2025-08-11 20:08:52,597 INFO SELECT COUNT(1) FROM public.biz_service_object
+2025-08-11 20:08:54,907 INFO SELECT COUNT(1) FROM public.biz_data_directory_ship
+2025-08-11 20:08:56,606 INFO SELECT COUNT(1) FROM public.biz_table_association_info
+2025-08-11 20:08:59,008 INFO SELECT COUNT(1) FROM public.biz_data_type
+2025-08-11 20:09:00,351 INFO SELECT COUNT(1) FROM public.db_push_field
+2025-08-11 20:09:02,953 INFO SELECT COUNT(1) FROM public.client_user_info
+2025-08-11 20:09:03,668 INFO SELECT COUNT(1) FROM public.biz_dept_batch
+2025-08-11 20:09:05,256 INFO SELECT COUNT(1) FROM public.quality_normative
+2025-08-11 20:09:07,783 INFO SELECT COUNT(1) FROM public.quality_normative_detail
+2025-08-11 20:09:10,490 INFO SELECT COUNT(1) FROM public.biz_data_resources
+2025-08-11 20:09:12,748 INFO SELECT COUNT(1) FROM public.biz_datasource_info
+2025-08-11 20:09:16,388 INFO SELECT COUNT(1) FROM public.biz_schedule_info
+2025-08-11 20:09:19,919 INFO SELECT COUNT(1) FROM public.biz_table_history_template_info
+2025-08-11 20:09:22,811 INFO SELECT COUNT(1) FROM public.biz_platform_info
+2025-08-11 20:09:25,010 INFO SELECT COUNT(1) FROM public.alembic_version
+2025-08-11 20:09:25,501 INFO SELECT COUNT(1) FROM public.biz_database_change_log
+2025-08-11 20:09:28,013 INFO SELECT COUNT(1) FROM public.biz_field_info
+2025-08-11 20:09:31,138 INFO SELECT COUNT(1) FROM public.biz_schedule_execute
+2025-08-11 20:09:33,923 INFO SELECT COUNT(1) FROM public.quality_result
+2025-08-11 20:09:36,186 INFO SELECT COUNT(1) FROM public.celery_interval_schedule
+2025-08-11 20:09:37,134 INFO SELECT COUNT(1) FROM public.celery_crontab_schedule
+2025-08-11 20:09:38,976 INFO SELECT COUNT(1) FROM public.celery_solar_schedule
+2025-08-11 20:09:40,164 INFO SELECT COUNT(1) FROM public.celery_periodic_task_changed
+2025-08-11 20:09:40,973 INFO SELECT COUNT(1) FROM public.db_push_table
+2025-08-11 20:09:43,564 INFO SELECT COUNT(1) FROM public.sys_oss_config
+2025-08-11 20:09:48,362 INFO SELECT COUNT(1) FROM public.sys_post
+2025-08-11 20:09:51,310 INFO SELECT COUNT(1) FROM public.sys_role
+2025-08-11 20:09:55,098 INFO SELECT COUNT(1) FROM public.sys_role_dept
+2025-08-11 20:09:55,788 INFO SELECT COUNT(1) FROM public.sys_role_menu
+2025-08-11 20:09:56,519 INFO SELECT COUNT(1) FROM public.quality_info
+2025-08-11 20:09:59,102 INFO SELECT COUNT(1) FROM public.rule_group
+2025-08-11 20:10:00,462 INFO SELECT COUNT(1) FROM public.rule
+2025-08-11 20:10:05,244 INFO SELECT COUNT(1) FROM public.sys_client
+2025-08-11 20:10:09,013 INFO SELECT COUNT(1) FROM public.sys_config
+2025-08-11 20:10:11,965 INFO SELECT COUNT(1) FROM public.sys_dict_data
+2025-08-11 20:10:15,570 INFO SELECT COUNT(1) FROM public.sys_dict_type
+2025-08-11 20:10:18,039 INFO SELECT COUNT(1) FROM public.gen_table
+2025-08-11 20:10:23,114 INFO SELECT COUNT(1) FROM public.biz_data_directory_audit
+2025-08-11 20:10:25,147 INFO SELECT COUNT(1) FROM public.biz_belong_system
+2025-08-11 20:10:30,271 INFO SELECT COUNT(1) FROM public.sys_menu
+2025-08-11 20:10:34,819 INFO SELECT COUNT(1) FROM public.sys_notice
+2025-08-11 20:10:37,786 INFO SELECT COUNT(1) FROM public.sys_oper_log
+2025-08-11 20:10:42,091 INFO SELECT COUNT(1) FROM public.sys_oss
+2025-08-11 20:10:45,040 INFO SELECT COUNT(1) FROM public.biz_data_directory_field_ship
+2025-08-11 20:10:46,465 INFO SELECT COUNT(1) FROM public.client_secret_info
+2025-08-11 20:10:47,850 INFO SELECT COUNT(1) FROM public.sys_social
+2025-08-11 20:10:54,484 INFO SELECT COUNT(1) FROM public.celery_periodic_task
+2025-08-11 20:10:59,157 INFO SELECT COUNT(1) FROM public.quality_execute
+2025-08-11 20:11:01,983 INFO SELECT COUNT(1) FROM public.quality_timeliness
+2025-08-11 20:11:03,955 INFO SELECT COUNT(1) FROM public.quality_accuracy
+2025-08-11 20:11:06,613 INFO SELECT COUNT(1) FROM public.quality_report_result
+2025-08-11 20:11:09,422 INFO SELECT COUNT(1) FROM public.quality_consistency
+2025-08-11 20:11:12,062 INFO SELECT COUNT(1) FROM public.quality_repeatability
+2025-08-11 20:11:14,724 INFO SELECT COUNT(1) FROM public.quality_integrity
+2025-08-11 20:11:17,346 INFO SELECT COUNT(1) FROM public.quality_scheduler_info
+2025-08-11 20:11:31,914 INFO Job "0255cade-2487-4899-8e8f-9c0619abb2fe (trigger: cron[hour='20', minute='4'], next run at: 2025-08-12 20:04:00 CST)" executed successfully
+2025-08-12 08:11:00,022 INFO Running job "d50b83b6-3991-47a8-8d9a-cde9759b253b (trigger: cron[hour='8', minute='11'], next run at: 2025-08-13 08:11:00 CST)" (scheduled at 2025-08-12 08:11:00+08:00)
+2025-08-12 08:11:00,127 INFO SELECT COUNT(1) FROM public.biz_data_directory_ship_desc
+2025-08-12 08:11:01,561 INFO SELECT COUNT(1) FROM public.biz_field_history_info
+2025-08-12 08:11:04,357 INFO SELECT COUNT(1) FROM public.biz_data_resources_download_log
+2025-08-12 08:11:05,750 INFO SELECT COUNT(1) FROM public.sys_dept
+2025-08-12 08:11:10,053 INFO SELECT COUNT(1) FROM public.sys_user_post
+2025-08-12 08:11:10,758 INFO SELECT COUNT(1) FROM public.sys_user_role
+2025-08-12 08:11:11,492 INFO SELECT COUNT(1) FROM public.biz_table_history_info
+2025-08-12 08:11:14,050 INFO SELECT COUNT(1) FROM public.gen_table_column
+2025-08-12 08:11:19,429 INFO SELECT COUNT(1) FROM public.apscheduler_jobs
+2025-08-12 08:11:20,355 INFO SELECT COUNT(1) FROM public.undo_log
+2025-08-12 08:11:22,113 INFO SELECT COUNT(1) FROM public.sys_user
+2025-08-12 08:11:27,184 INFO SELECT COUNT(1) FROM public.sys_user_login_info
+2025-08-12 08:11:29,210 INFO SELECT COUNT(1) FROM public.sys_external_app
+2025-08-12 08:11:30,774 INFO SELECT COUNT(1) FROM public.sys_logininfor
+2025-08-12 08:11:33,663 INFO SELECT COUNT(1) FROM public.sys_log
+2025-08-12 08:11:38,782 INFO SELECT COUNT(1) FROM public.biz_data_resources_auth
+2025-08-12 08:11:40,171 INFO SELECT COUNT(1) FROM public.biz_table_info
+2025-08-12 08:11:42,779 INFO SELECT COUNT(1) FROM public.quality_rule
+2025-08-12 08:11:43,702 INFO SELECT COUNT(1) FROM public.sys_tenant
+2025-08-12 08:11:48,401 INFO SELECT COUNT(1) FROM public.sys_tenant_package
+2025-08-12 08:11:51,321 INFO SELECT COUNT(1) FROM public.configure_rule_info
+2025-08-12 08:11:53,106 INFO SELECT COUNT(1) FROM public.biz_data_directory_item
+2025-08-12 08:11:55,153 INFO SELECT COUNT(1) FROM public.biz_data_directory
+2025-08-12 08:12:05,621 INFO SELECT COUNT(1) FROM public.llm_monitor
+2025-08-12 08:12:06,939 INFO SELECT COUNT(1) FROM public.biz_service_object
+2025-08-12 08:12:09,150 INFO SELECT COUNT(1) FROM public.biz_data_directory_ship
+2025-08-12 08:12:10,762 INFO SELECT COUNT(1) FROM public.biz_table_association_info
+2025-08-12 08:12:13,159 INFO SELECT COUNT(1) FROM public.biz_data_type
+2025-08-12 08:12:14,495 INFO SELECT COUNT(1) FROM public.db_push_field
+2025-08-12 08:12:17,171 INFO SELECT COUNT(1) FROM public.client_user_info
+2025-08-12 08:12:17,887 INFO SELECT COUNT(1) FROM public.biz_dept_batch
+2025-08-12 08:12:19,428 INFO SELECT COUNT(1) FROM public.quality_normative
+2025-08-12 08:12:21,919 INFO SELECT COUNT(1) FROM public.quality_normative_detail
+2025-08-12 08:12:24,588 INFO SELECT COUNT(1) FROM public.biz_data_resources
+2025-08-12 08:12:26,813 INFO SELECT COUNT(1) FROM public.biz_datasource_info
+2025-08-12 08:12:30,320 INFO SELECT COUNT(1) FROM public.biz_schedule_info
+2025-08-12 08:12:33,628 INFO SELECT COUNT(1) FROM public.biz_table_history_template_info
+2025-08-12 08:12:36,600 INFO SELECT COUNT(1) FROM public.biz_platform_info
+2025-08-12 08:12:38,877 INFO SELECT COUNT(1) FROM public.alembic_version
+2025-08-12 08:12:39,384 INFO SELECT COUNT(1) FROM public.biz_database_change_log
+2025-08-12 08:12:41,845 INFO SELECT COUNT(1) FROM public.biz_field_info
+2025-08-12 08:12:44,891 INFO SELECT COUNT(1) FROM public.biz_schedule_execute
+2025-08-12 08:12:47,602 INFO SELECT COUNT(1) FROM public.quality_result
+2025-08-12 08:12:49,878 INFO SELECT COUNT(1) FROM public.celery_interval_schedule
+2025-08-12 08:12:50,817 INFO SELECT COUNT(1) FROM public.celery_crontab_schedule
+2025-08-12 08:12:52,641 INFO SELECT COUNT(1) FROM public.celery_solar_schedule
+2025-08-12 08:12:53,774 INFO SELECT COUNT(1) FROM public.celery_periodic_task_changed
+2025-08-12 08:12:54,488 INFO SELECT COUNT(1) FROM public.db_push_table
+2025-08-12 08:12:56,943 INFO SELECT COUNT(1) FROM public.sys_oss_config
+2025-08-12 08:13:01,636 INFO SELECT COUNT(1) FROM public.sys_post
+2025-08-12 08:13:04,531 INFO SELECT COUNT(1) FROM public.sys_role
+2025-08-12 08:13:08,310 INFO SELECT COUNT(1) FROM public.sys_role_dept
+2025-08-12 08:13:09,088 INFO SELECT COUNT(1) FROM public.sys_role_menu
+2025-08-12 08:13:09,960 INFO SELECT COUNT(1) FROM public.quality_info
+2025-08-12 08:13:12,613 INFO SELECT COUNT(1) FROM public.rule_group
+2025-08-12 08:13:13,993 INFO SELECT COUNT(1) FROM public.rule
+2025-08-12 08:13:18,610 INFO SELECT COUNT(1) FROM public.sys_client
+2025-08-12 08:13:22,385 INFO SELECT COUNT(1) FROM public.sys_config
+2025-08-12 08:13:25,191 INFO SELECT COUNT(1) FROM public.sys_dict_data
+2025-08-12 08:13:28,676 INFO SELECT COUNT(1) FROM public.sys_dict_type
+2025-08-12 08:13:31,122 INFO SELECT COUNT(1) FROM public.gen_table
+2025-08-12 08:13:36,114 INFO SELECT COUNT(1) FROM public.biz_data_directory_audit
+2025-08-12 08:13:38,148 INFO SELECT COUNT(1) FROM public.biz_belong_system
+2025-08-12 08:13:43,077 INFO SELECT COUNT(1) FROM public.sys_menu
+2025-08-12 08:13:47,684 INFO SELECT COUNT(1) FROM public.sys_notice
+2025-08-12 08:13:50,522 INFO SELECT COUNT(1) FROM public.sys_oper_log
+2025-08-12 08:13:54,673 INFO SELECT COUNT(1) FROM public.sys_oss
+2025-08-12 08:13:57,536 INFO SELECT COUNT(1) FROM public.biz_data_directory_field_ship
+2025-08-12 08:13:58,896 INFO SELECT COUNT(1) FROM public.client_secret_info
+2025-08-12 08:14:00,269 INFO SELECT COUNT(1) FROM public.sys_social
+2025-08-12 08:14:06,790 INFO SELECT COUNT(1) FROM public.celery_periodic_task
+2025-08-12 08:14:11,448 INFO SELECT COUNT(1) FROM public.quality_execute
+2025-08-12 08:14:14,329 INFO SELECT COUNT(1) FROM public.quality_timeliness
+2025-08-12 08:14:16,343 INFO SELECT COUNT(1) FROM public.quality_accuracy
+2025-08-12 08:14:19,068 INFO SELECT COUNT(1) FROM public.quality_report_result
+2025-08-12 08:14:22,065 INFO SELECT COUNT(1) FROM public.quality_consistency
+2025-08-12 08:14:24,728 INFO SELECT COUNT(1) FROM public.quality_repeatability
+2025-08-12 08:14:27,468 INFO SELECT COUNT(1) FROM public.quality_integrity
+2025-08-12 08:14:30,201 INFO SELECT COUNT(1) FROM public.quality_scheduler_info
+2025-08-12 08:14:51,133 INFO Job "d50b83b6-3991-47a8-8d9a-cde9759b253b (trigger: cron[hour='8', minute='11'], next run at: 2025-08-13 08:11:00 CST)" executed successfully
+2025-08-12 08:34:00,021 INFO Running job "3026ed1f-5e95-4ff5-86eb-e8165cacb441 (trigger: cron[hour='8', minute='34'], next run at: 2025-08-13 08:34:00 CST)" (scheduled at 2025-08-12 08:34:00+08:00)
+2025-08-12 08:34:00,022 INFO 123456
+2025-08-12 08:34:00,072 INFO Job "3026ed1f-5e95-4ff5-86eb-e8165cacb441 (trigger: cron[hour='8', minute='34'], next run at: 2025-08-13 08:34:00 CST)" executed successfully
+2025-08-12 09:44:00,015 INFO Running job "01f0c30f-604c-4fc4-bbe0-ba52c9763431 (trigger: cron[hour='9', minute='44'], next run at: 2025-08-13 09:44:00 CST)" (scheduled at 2025-08-12 09:44:00+08:00)
+2025-08-12 09:44:00,359 INFO Job "01f0c30f-604c-4fc4-bbe0-ba52c9763431 (trigger: cron[hour='9', minute='44'], next run at: 2025-08-13 09:44:00 CST)" executed successfully
+2025-08-12 10:01:00,019 INFO Running job "46209c04-5c81-40d1-9bd0-b961eabff9b7 (trigger: cron[hour='10', minute='1'], next run at: 2025-08-13 10:01:00 CST)" (scheduled at 2025-08-12 10:01:00+08:00)
+2025-08-12 10:01:00,149 INFO SELECT COUNT(1) FROM None.biz_data_directory_ship_desc
+2025-08-12 10:01:00,188 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_data_directory_ship_desc" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_data_directory_ship_desc
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_data_directory_ship_desc]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:01,542 INFO SELECT COUNT(1) FROM None.biz_field_history_info
+2025-08-12 10:01:01,553 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_field_history_info" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_field_history_info
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_field_history_info]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:04,207 INFO SELECT COUNT(1) FROM None.biz_data_resources_download_log
+2025-08-12 10:01:04,231 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_data_resources_download_log" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_data_resources_download_log
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_data_resources_download_log]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:05,576 INFO SELECT COUNT(1) FROM None.sys_dept
+2025-08-12 10:01:05,633 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_dept" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_dept
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_dept]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:09,771 INFO SELECT COUNT(1) FROM None.sys_user_post
+2025-08-12 10:01:09,783 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_user_post" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_user_post
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_user_post]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:10,455 INFO SELECT COUNT(1) FROM None.sys_user_role
+2025-08-12 10:01:10,468 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_user_role" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_user_role
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_user_role]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:11,176 INFO SELECT COUNT(1) FROM None.biz_table_history_info
+2025-08-12 10:01:11,329 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_table_history_info" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_table_history_info
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_table_history_info]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:13,783 INFO SELECT COUNT(1) FROM None.gen_table_column
+2025-08-12 10:01:13,868 INFO (psycopg2.errors.UndefinedTable) relation "none.gen_table_column" does not exist
+LINE 1: SELECT COUNT(1) FROM None.gen_table_column
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.gen_table_column]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:18,956 INFO SELECT COUNT(1) FROM None.apscheduler_jobs
+2025-08-12 10:01:18,969 INFO (psycopg2.errors.UndefinedTable) relation "none.apscheduler_jobs" does not exist
+LINE 1: SELECT COUNT(1) FROM None.apscheduler_jobs
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.apscheduler_jobs]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:19,888 INFO SELECT COUNT(1) FROM None.undo_log
+2025-08-12 10:01:19,900 INFO (psycopg2.errors.UndefinedTable) relation "none.undo_log" does not exist
+LINE 1: SELECT COUNT(1) FROM None.undo_log
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.undo_log]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:21,622 INFO SELECT COUNT(1) FROM None.sys_user
+2025-08-12 10:01:21,649 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_user" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_user
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_user]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:26,555 INFO SELECT COUNT(1) FROM None.sys_user_login_info
+2025-08-12 10:01:26,567 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_user_login_info" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_user_login_info
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_user_login_info]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:28,516 INFO SELECT COUNT(1) FROM None.sys_external_app
+2025-08-12 10:01:28,532 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_external_app" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_external_app
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_external_app]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:30,074 INFO SELECT COUNT(1) FROM None.sys_logininfor
+2025-08-12 10:01:30,086 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_logininfor" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_logininfor
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_logininfor]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:32,897 INFO SELECT COUNT(1) FROM None.sys_log
+2025-08-12 10:01:32,911 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_log" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_log
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_log]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:37,891 INFO SELECT COUNT(1) FROM None.biz_data_resources_auth
+2025-08-12 10:01:37,913 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_data_resources_auth" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_data_resources_auth
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_data_resources_auth]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:39,206 INFO SELECT COUNT(1) FROM None.biz_table_info
+2025-08-12 10:01:39,219 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_table_info" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_table_info
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_table_info]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:41,918 INFO SELECT COUNT(1) FROM None.quality_rule
+2025-08-12 10:01:41,930 INFO (psycopg2.errors.UndefinedTable) relation "none.quality_rule" does not exist
+LINE 1: SELECT COUNT(1) FROM None.quality_rule
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.quality_rule]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:42,853 INFO SELECT COUNT(1) FROM None.sys_tenant
+2025-08-12 10:01:42,871 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_tenant" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_tenant
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_tenant]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:47,406 INFO SELECT COUNT(1) FROM None.sys_tenant_package
+2025-08-12 10:01:47,419 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_tenant_package" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_tenant_package
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_tenant_package]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:50,274 INFO SELECT COUNT(1) FROM None.configure_rule_info
+2025-08-12 10:01:50,285 INFO (psycopg2.errors.UndefinedTable) relation "none.configure_rule_info" does not exist
+LINE 1: SELECT COUNT(1) FROM None.configure_rule_info
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.configure_rule_info]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:52,087 INFO SELECT COUNT(1) FROM None.biz_data_directory_item
+2025-08-12 10:01:52,100 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_data_directory_item" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_data_directory_item
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_data_directory_item]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:01:54,050 INFO SELECT COUNT(1) FROM None.biz_data_directory
+2025-08-12 10:01:54,064 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_data_directory" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_data_directory
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_data_directory]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:04,299 INFO SELECT COUNT(1) FROM None.llm_monitor
+2025-08-12 10:02:04,322 INFO (psycopg2.errors.UndefinedTable) relation "none.llm_monitor" does not exist
+LINE 1: SELECT COUNT(1) FROM None.llm_monitor
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.llm_monitor]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:05,644 INFO SELECT COUNT(1) FROM None.biz_service_object
+2025-08-12 10:02:05,665 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_service_object" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_service_object
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_service_object]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:07,849 INFO SELECT COUNT(1) FROM None.biz_data_directory_ship
+2025-08-12 10:02:07,861 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_data_directory_ship" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_data_directory_ship
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_data_directory_ship]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:09,428 INFO SELECT COUNT(1) FROM None.biz_table_association_info
+2025-08-12 10:02:09,439 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_table_association_info" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_table_association_info
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_table_association_info]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:11,800 INFO SELECT COUNT(1) FROM None.biz_data_type
+2025-08-12 10:02:11,811 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_data_type" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_data_type
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_data_type]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:13,135 INFO SELECT COUNT(1) FROM None.db_push_field
+2025-08-12 10:02:13,150 INFO (psycopg2.errors.UndefinedTable) relation "none.db_push_field" does not exist
+LINE 1: SELECT COUNT(1) FROM None.db_push_field
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.db_push_field]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:15,773 INFO SELECT COUNT(1) FROM None.client_user_info
+2025-08-12 10:02:15,784 INFO (psycopg2.errors.UndefinedTable) relation "none.client_user_info" does not exist
+LINE 1: SELECT COUNT(1) FROM None.client_user_info
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.client_user_info]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:16,483 INFO SELECT COUNT(1) FROM None.biz_dept_batch
+2025-08-12 10:02:16,496 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_dept_batch" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_dept_batch
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_dept_batch]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:18,022 INFO SELECT COUNT(1) FROM None.quality_normative
+2025-08-12 10:02:18,043 INFO (psycopg2.errors.UndefinedTable) relation "none.quality_normative" does not exist
+LINE 1: SELECT COUNT(1) FROM None.quality_normative
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.quality_normative]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:20,434 INFO SELECT COUNT(1) FROM None.quality_normative_detail
+2025-08-12 10:02:20,451 INFO (psycopg2.errors.UndefinedTable) relation "none.quality_normative_detail" does not exist
+LINE 1: SELECT COUNT(1) FROM None.quality_normative_detail
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.quality_normative_detail]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:23,099 INFO SELECT COUNT(1) FROM None.biz_data_resources
+2025-08-12 10:02:23,109 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_data_resources" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_data_resources
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_data_resources]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:25,291 INFO SELECT COUNT(1) FROM None.biz_datasource_info
+2025-08-12 10:02:25,317 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_datasource_info" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_datasource_info
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_datasource_info]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:28,751 INFO SELECT COUNT(1) FROM None.biz_schedule_info
+2025-08-12 10:02:28,762 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_schedule_info" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_schedule_info
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_schedule_info]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:31,939 INFO SELECT COUNT(1) FROM None.biz_table_history_template_info
+2025-08-12 10:02:31,951 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_table_history_template_info" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_table_history_template_info
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_table_history_template_info]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:34,705 INFO SELECT COUNT(1) FROM None.biz_platform_info
+2025-08-12 10:02:34,742 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_platform_info" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_platform_info
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_platform_info]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:36,929 INFO SELECT COUNT(1) FROM None.alembic_version
+2025-08-12 10:02:36,942 INFO (psycopg2.errors.UndefinedTable) relation "none.alembic_version" does not exist
+LINE 1: SELECT COUNT(1) FROM None.alembic_version
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.alembic_version]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:37,410 INFO SELECT COUNT(1) FROM None.biz_database_change_log
+2025-08-12 10:02:37,445 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_database_change_log" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_database_change_log
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_database_change_log]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:39,671 INFO SELECT COUNT(1) FROM None.biz_field_info
+2025-08-12 10:02:39,692 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_field_info" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_field_info
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_field_info]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:42,509 INFO SELECT COUNT(1) FROM None.biz_schedule_execute
+2025-08-12 10:02:42,533 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_schedule_execute" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_schedule_execute
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_schedule_execute]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:45,082 INFO SELECT COUNT(1) FROM None.quality_result
+2025-08-12 10:02:45,093 INFO (psycopg2.errors.UndefinedTable) relation "none.quality_result" does not exist
+LINE 1: SELECT COUNT(1) FROM None.quality_result
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.quality_result]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:47,204 INFO SELECT COUNT(1) FROM None.celery_interval_schedule
+2025-08-12 10:02:47,217 INFO (psycopg2.errors.UndefinedTable) relation "none.celery_interval_schedule" does not exist
+LINE 1: SELECT COUNT(1) FROM None.celery_interval_schedule
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.celery_interval_schedule]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:48,113 INFO SELECT COUNT(1) FROM None.celery_crontab_schedule
+2025-08-12 10:02:48,124 INFO (psycopg2.errors.UndefinedTable) relation "none.celery_crontab_schedule" does not exist
+LINE 1: SELECT COUNT(1) FROM None.celery_crontab_schedule
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.celery_crontab_schedule]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:49,943 INFO SELECT COUNT(1) FROM None.celery_solar_schedule
+2025-08-12 10:02:49,954 INFO (psycopg2.errors.UndefinedTable) relation "none.celery_solar_schedule" does not exist
+LINE 1: SELECT COUNT(1) FROM None.celery_solar_schedule
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.celery_solar_schedule]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:51,087 INFO SELECT COUNT(1) FROM None.celery_periodic_task_changed
+2025-08-12 10:02:51,102 INFO (psycopg2.errors.UndefinedTable) relation "none.celery_periodic_task_changed" does not exist
+LINE 1: SELECT COUNT(1) FROM None.celery_periodic_task_changed
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.celery_periodic_task_changed]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:51,800 INFO SELECT COUNT(1) FROM None.db_push_table
+2025-08-12 10:02:51,850 INFO (psycopg2.errors.UndefinedTable) relation "none.db_push_table" does not exist
+LINE 1: SELECT COUNT(1) FROM None.db_push_table
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.db_push_table]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:54,230 INFO SELECT COUNT(1) FROM None.sys_oss_config
+2025-08-12 10:02:54,242 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_oss_config" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_oss_config
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_oss_config]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:02:58,834 INFO SELECT COUNT(1) FROM None.sys_post
+2025-08-12 10:02:58,859 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_post" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_post
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_post]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:03:01,751 INFO SELECT COUNT(1) FROM None.sys_role
+2025-08-12 10:03:01,770 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_role" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_role
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_role]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:03:05,515 INFO SELECT COUNT(1) FROM None.sys_role_dept
+2025-08-12 10:03:05,527 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_role_dept" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_role_dept
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_role_dept]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:03:06,249 INFO SELECT COUNT(1) FROM None.sys_role_menu
+2025-08-12 10:03:06,262 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_role_menu" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_role_menu
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_role_menu]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:03:06,976 INFO SELECT COUNT(1) FROM None.quality_info
+2025-08-12 10:03:06,991 INFO (psycopg2.errors.UndefinedTable) relation "none.quality_info" does not exist
+LINE 1: SELECT COUNT(1) FROM None.quality_info
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.quality_info]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:03:09,619 INFO SELECT COUNT(1) FROM None.rule_group
+2025-08-12 10:03:09,631 INFO (psycopg2.errors.UndefinedTable) relation "none.rule_group" does not exist
+LINE 1: SELECT COUNT(1) FROM None.rule_group
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.rule_group]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:03:10,937 INFO SELECT COUNT(1) FROM None.rule
+2025-08-12 10:03:10,951 INFO (psycopg2.errors.UndefinedTable) relation "none.rule" does not exist
+LINE 1: SELECT COUNT(1) FROM None.rule
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.rule]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:03:15,396 INFO SELECT COUNT(1) FROM None.sys_client
+2025-08-12 10:03:15,417 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_client" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_client
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_client]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:03:19,222 INFO SELECT COUNT(1) FROM None.sys_config
+2025-08-12 10:03:19,235 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_config" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_config
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_config]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:03:22,073 INFO SELECT COUNT(1) FROM None.sys_dict_data
+2025-08-12 10:03:22,097 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_dict_data" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_dict_data
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_dict_data]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:03:25,581 INFO SELECT COUNT(1) FROM None.sys_dict_type
+2025-08-12 10:03:25,594 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_dict_type" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_dict_type
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_dict_type]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:03:28,027 INFO SELECT COUNT(1) FROM None.gen_table
+2025-08-12 10:03:28,052 INFO (psycopg2.errors.UndefinedTable) relation "none.gen_table" does not exist
+LINE 1: SELECT COUNT(1) FROM None.gen_table
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.gen_table]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:03:33,045 INFO SELECT COUNT(1) FROM None.biz_data_directory_audit
+2025-08-12 10:03:33,067 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_data_directory_audit" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_data_directory_audit
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_data_directory_audit]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:03:35,085 INFO SELECT COUNT(1) FROM None.biz_belong_system
+2025-08-12 10:03:35,115 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_belong_system" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_belong_system
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_belong_system]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:03:40,122 INFO SELECT COUNT(1) FROM None.sys_menu
+2025-08-12 10:03:40,136 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_menu" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_menu
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_menu]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:03:44,764 INFO SELECT COUNT(1) FROM None.sys_notice
+2025-08-12 10:03:44,778 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_notice" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_notice
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_notice]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:03:47,685 INFO SELECT COUNT(1) FROM None.sys_oper_log
+2025-08-12 10:03:47,698 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_oper_log" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_oper_log
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_oper_log]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:03:51,795 INFO SELECT COUNT(1) FROM None.sys_oss
+2025-08-12 10:03:51,810 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_oss" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_oss
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_oss]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:03:54,703 INFO SELECT COUNT(1) FROM None.biz_data_directory_field_ship
+2025-08-12 10:03:54,736 INFO (psycopg2.errors.UndefinedTable) relation "none.biz_data_directory_field_ship" does not exist
+LINE 1: SELECT COUNT(1) FROM None.biz_data_directory_field_ship
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.biz_data_directory_field_ship]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:03:56,082 INFO SELECT COUNT(1) FROM None.client_secret_info
+2025-08-12 10:03:56,130 INFO (psycopg2.errors.UndefinedTable) relation "none.client_secret_info" does not exist
+LINE 1: SELECT COUNT(1) FROM None.client_secret_info
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.client_secret_info]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:03:57,486 INFO SELECT COUNT(1) FROM None.sys_social
+2025-08-12 10:03:57,511 INFO (psycopg2.errors.UndefinedTable) relation "none.sys_social" does not exist
+LINE 1: SELECT COUNT(1) FROM None.sys_social
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.sys_social]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:04:03,963 INFO SELECT COUNT(1) FROM None.celery_periodic_task
+2025-08-12 10:04:03,975 INFO (psycopg2.errors.UndefinedTable) relation "none.celery_periodic_task" does not exist
+LINE 1: SELECT COUNT(1) FROM None.celery_periodic_task
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.celery_periodic_task]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:04:08,589 INFO SELECT COUNT(1) FROM None.quality_execute
+2025-08-12 10:04:08,625 INFO (psycopg2.errors.UndefinedTable) relation "none.quality_execute" does not exist
+LINE 1: SELECT COUNT(1) FROM None.quality_execute
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.quality_execute]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:04:11,565 INFO SELECT COUNT(1) FROM None.quality_timeliness
+2025-08-12 10:04:11,576 INFO (psycopg2.errors.UndefinedTable) relation "none.quality_timeliness" does not exist
+LINE 1: SELECT COUNT(1) FROM None.quality_timeliness
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.quality_timeliness]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:04:13,570 INFO SELECT COUNT(1) FROM None.quality_accuracy
+2025-08-12 10:04:13,588 INFO (psycopg2.errors.UndefinedTable) relation "none.quality_accuracy" does not exist
+LINE 1: SELECT COUNT(1) FROM None.quality_accuracy
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.quality_accuracy]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:04:16,540 INFO SELECT COUNT(1) FROM None.quality_report_result
+2025-08-12 10:04:16,553 INFO (psycopg2.errors.UndefinedTable) relation "none.quality_report_result" does not exist
+LINE 1: SELECT COUNT(1) FROM None.quality_report_result
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.quality_report_result]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:04:19,449 INFO SELECT COUNT(1) FROM None.quality_consistency
+2025-08-12 10:04:19,466 INFO (psycopg2.errors.UndefinedTable) relation "none.quality_consistency" does not exist
+LINE 1: SELECT COUNT(1) FROM None.quality_consistency
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.quality_consistency]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:04:22,461 INFO SELECT COUNT(1) FROM None.quality_repeatability
+2025-08-12 10:04:22,473 INFO (psycopg2.errors.UndefinedTable) relation "none.quality_repeatability" does not exist
+LINE 1: SELECT COUNT(1) FROM None.quality_repeatability
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.quality_repeatability]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:04:25,442 INFO SELECT COUNT(1) FROM None.quality_integrity
+2025-08-12 10:04:25,460 INFO (psycopg2.errors.UndefinedTable) relation "none.quality_integrity" does not exist
+LINE 1: SELECT COUNT(1) FROM None.quality_integrity
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.quality_integrity]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:04:28,400 INFO SELECT COUNT(1) FROM None.quality_scheduler_info
+2025-08-12 10:04:28,412 INFO (psycopg2.errors.UndefinedTable) relation "none.quality_scheduler_info" does not exist
+LINE 1: SELECT COUNT(1) FROM None.quality_scheduler_info
+                             ^
+
+[SQL: SELECT COUNT(1) FROM None.quality_scheduler_info]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-12 10:04:58,238 INFO Job "46209c04-5c81-40d1-9bd0-b961eabff9b7 (trigger: cron[hour='10', minute='1'], next run at: 2025-08-13 10:01:00 CST)" executed successfully
+2025-08-12 10:20:00,015 INFO Running job "1a32afb5-0d7d-4b71-a78d-1ea0268c9f1c (trigger: cron[hour='10', minute='20'], next run at: 2025-08-13 10:20:00 CST)" (scheduled at 2025-08-12 10:20:00+08:00)
+2025-08-12 10:20:00,101 INFO Job "1a32afb5-0d7d-4b71-a78d-1ea0268c9f1c (trigger: cron[hour='10', minute='20'], next run at: 2025-08-13 10:20:00 CST)" executed successfully
+2025-08-12 10:42:15,507 INFO {'datasource_id': 96, 'minute': '10', 'hour': '17', 'method': 'day', 'schedule_name': '123', 'schedule_type': 'data_quality'}
+2025-08-12 10:42:15,518 ERROR 'Job identifier (quality_96) conflicts with an existing job'
