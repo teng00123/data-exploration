@@ -33,4 +33,4 @@ scheduler = BackgroundScheduler(
     }
 )
 
-r = redis.Redis(host=config.get('redis').get('host'), port=6379, db=0, password=config.get('redis').get('password'))
+r = redis.Redis(host=config.get('redis').get('host'), port=config.get('redis').get('port', 6379), db=0, password=config.get('redis').get('password'))
