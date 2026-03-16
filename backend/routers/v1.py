@@ -1,9 +1,11 @@
 import base64
 import json
+import logging
 import os.path
 import random
 import time
 
+logger = logging.getLogger(__name__)
 from flask import Blueprint, request
 from backend.database.base import GenericCRUD
 from backend.database.rule import RuleGroup, RuleGroupGraph, Rule, RuleGraph, ConfigureRuleInfo, ConfigureRuleFieldInfo, \
@@ -48,14 +50,14 @@ def rule_group_query():
 @record_user_operation(operation_manage='规则分组',operation_details='修改规则分组',operation_type='修改')
 def rule_group_update():
     data = request.get_json()
-    id = data.get('id')
+    record_id = data.get('id')
     group_name = data.get('group_name')
     parent_id = data.get('parent_id', None)
     try:
         if parent_id:
-            GenericCRUD.update(RuleGroup, id=id, group_name=group_name, parent_id=parent_id)
+            GenericCRUD.update(RuleGroup, id=record_id, group_name=group_name, parent_id=parent_id)
         else:
-            GenericCRUD.update(RuleGroup, id=id, group_name=group_name)
+            GenericCRUD.update(RuleGroup, id=record_id, group_name=group_name)
     except Exception as e:
         return ErrorResponse(error_data=str(e)).to_response()
     return SuccessResponse().to_response()
@@ -65,9 +67,9 @@ def rule_group_update():
 @record_user_operation(operation_manage='规则分组',operation_details='删除规则分组',operation_type='删除')
 def rule_group_delete():
     data = request.get_json()
-    id = data.get('id')
+    record_id = data.get('id')
     try:
-        GenericCRUD.delete(RuleGroup, id=id)
+        GenericCRUD.delete(RuleGroup, id=record_id)
     except Exception as e:
         return ErrorResponse(error_data=str(e)).to_response()
     return SuccessResponse().to_response()
@@ -124,7 +126,7 @@ def rule_create():
 @record_user_operation(operation_manage='规则管理',operation_details='修改规则信息',operation_type='修改')
 def rule_update():
     data = request.get_json()
-    id = data.get('id')
+    record_id = data.get('id')
     rule_code = data.get('rule_code')
     group_id = data.get('group_id')
     business_rules = data.get('business_rules')
@@ -142,8 +144,7 @@ def rule_update():
         sql_expression =aes_decrypt(sql_expression)
         if is_sql_injection_risky(sql_expression) is True:
             return ErrorResponse(error_data='检测到sql注入风险').to_response()
-        GenericCRUD.update(Rule,
-                           id=id,
+        GenericCRUD.update(Rule, id=record_id,
                            rule_code=rule_code,
                            group_id=group_id,
                            business_rules=business_rules,
@@ -430,7 +431,6 @@ def configure_rule_batch():
                 rule_info = GenericCRUD.query_by_conditions(Rule, filters={"id": i.get('rule_id')}, first=True)
                 if rule_info.get('is_timeliness') == is_timeliness:
                     GenericCRUD.delete(ConfigureRuleInfo, i.get('id'))
-                GenericCRUD.delete(ConfigureRuleInfo, i.get('id'))
             for rule_id in rules_id:
                 if field_id:
                     for _field_id in field_id:
@@ -459,10 +459,10 @@ def configure_rule_field():
     return SuccessResponse().to_response()
 
 @router.post('/configure/rule/field/delete')
-@record_user_operation(operation_type='operation_manage',operation_details='删除多字段规则',operation_manage='删除')
+@record_user_operation(operation_type='删除', operation_details='删除多字段规则', operation_manage='数据质量规则配置')
 def configure_rule_field_delete():
     data = request.get_json()
-    id = data.get('id')
+    record_id = data.get('id')
     try:
         GenericCRUD.delete(ConfigureRuleFieldInfo, id)
     except Exception as e:
@@ -489,7 +489,7 @@ def configure_rule_table():
 @record_user_operation(operation_manage='数据质量规则配置',operation_details='删除多表规则',operation_type='删除')
 def configure_rule_table_delete():
     data = request.get_json()
-    id = data.get('id')
+    record_id = data.get('id')
     try:
         GenericCRUD.delete(ConfigureRuleTableInfo, id)
     except Exception as e:
@@ -764,7 +764,7 @@ def schedule_detail_table_update():
     execute_id = data.get('execute_id')
     datasource_id = data.get('database_id')
     table_name = data.get('table_name')
-    id = data.get('id')
+    record_id = data.get('id')
     total = data.get('total')
     timeliness = data.get('timeliness')
     try:
@@ -772,9 +772,9 @@ def schedule_detail_table_update():
                                                                                       'database_id': datasource_id,
                                                                                       'quality_table_name': table_name},
                                                           first=True)
-        print(timeliness_info.get('id'))
+        logger.debug('Updating timeliness record id: %s', timeliness_info.get('id'))
         GenericCRUD.update(QualityTimeliness, id=timeliness_info.get('id'), timeliness=timeliness)
-        GenericCRUD.update(QualityReportResult, id=id, total=total)
+        GenericCRUD.update(QualityReportResult, id=record_id, total=total)
     except Exception as e:
         return ErrorResponse(error_data=str(e)).to_response()
     return SuccessResponse().to_response()
@@ -1332,7 +1332,7 @@ def report_download():
     try:
         file_name = str(execute_id) + str(datasource_id) + '.pdf'
         file_path = config.get('report_file') + file_name
-        print(file_path)
+        logger.debug('Report file path: %s', file_path)
         if not os.path.exists(file_path):
             return ErrorResponse(error_data='文件不存在').to_response()
     except Exception as e:
@@ -1828,7 +1828,7 @@ def query_quality_rating_field():
 def quality_rating_field_update():
     data = request.get_json()
     rule_type = data.get('rule_type')
-    id = data.get('id')
+    record_id = data.get('id')
     total = data.get('total')
     try:
         if rule_type == '数据完整性':
@@ -1841,7 +1841,7 @@ def quality_rating_field_update():
             model_class = QualityRepeatability
         else:
             return ErrorResponse(error_data='rule_type参数错误').to_response()
-        GenericCRUD.update(model_class, id=id, score=total)
+        GenericCRUD.update(model_class, id=record_id, score=total)
     except Exception as e:
         return ErrorResponse(error_data=str(e)).to_response()
     return SuccessResponse().to_response()

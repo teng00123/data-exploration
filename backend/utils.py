@@ -26,33 +26,41 @@ def backup_mysql(host, port, user, password, database, is_docker=False, containe
     filename = f"mysql_backup_{timestamp}.sql"
     filepath = os.path.join(config['UPLOAD_FOLDER'], filename)
 
+    # 使用列表参数避免 shell 注入，通过重定向写入文件
     if is_docker and container_name:
-        cmd = f"docker exec {container_name} mysqldump -h {host} -P {port} -u {user} -p{password} {database} > {filepath}"
+        cmd = ["docker", "exec", container_name, "mysqldump",
+               "-h", host, "-P", str(port), "-u", user, f"-p{password}", database]
     else:
-        cmd = f"mysqldump -h {host} -P {port} -u {user} -p{password} {database} > {filepath}"
+        cmd = ["mysqldump", "-h", host, "-P", str(port), "-u", user, f"-p{password}", database]
 
-    subprocess.run(cmd, shell=True, check=True)
+    with open(filepath, 'w') as f:
+        subprocess.run(cmd, stdout=f, check=True)
     return filepath
 
 
-def backup_postgresql(host, port, user, password, database,filepath, is_docker=False, container_name=None, incremental=False):
+def backup_postgresql(host, port, user, password, database, filepath, is_docker=False, container_name=None, incremental=False):
     """备份PostgreSQL数据库"""
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = f"mysql_backup_{timestamp}.sql"
+    filename = f"pg_backup_{timestamp}.sql"
     filepath = os.path.join(filepath, filename)
+
+    # 使用列表参数避免 shell 注入
     if incremental:
         if is_docker and container_name:
-            cmd = f"docker exec {container_name} pg_basebackup -h {host} -p {port} -U {user} -D - -Ft -P -R > {filepath}"
+            cmd = ["docker", "exec", container_name, "pg_basebackup",
+                   "-h", host, "-p", str(port), "-U", user, "-D", "-", "-Ft", "-P", "-R"]
         else:
-            cmd = f"pg_basebackup -h {host} -p {port} -U {user} -D - -Ft -P -R > {filepath}"
+            cmd = ["pg_basebackup", "-h", host, "-p", str(port), "-U", user,
+                   "-D", "-", "-Ft", "-P", "-R"]
     else:
+        db_url = f"postgresql://{user}:{urllib.parse.quote_plus(password)}@{host}:{port}/{database}"
         if is_docker and container_name:
-            cmd = f'docker exec {container_name} pg_dump "postgresql://{user}:{urllib.parse.quote_plus(password)}@{host}:{port}/{database}" > {filepath}'
+            cmd = ["docker", "exec", container_name, "pg_dump", db_url]
         else:
-            cmd = f'pg_dump "postgresql://{user}:{password}@{host}:{port}/{database}" > {filepath}'
+            cmd = ["pg_dump", db_url]
 
-
-    subprocess.run(cmd, shell=True, check=True)
+    with open(filepath, 'w') as f:
+        subprocess.run(cmd, stdout=f, check=True)
     return filepath
 
 
@@ -75,6 +83,7 @@ def aes_decrypt(encrypted_data: str, key: str = '1234567890123456', iv: str = '1
     :param key: 16/24/32字节的密钥
     :param iv: 16字节的初始化向量
     :return: 解密后的明文字符串
+    # TODO: 默认 key/iv 仅为占位，生产环境务必通过参数传入安全的密钥，切勿使用默认值
     """
     cipher = AES.new(key.encode('utf-8'), AES.MODE_CBC, iv.encode('utf-8'))
     decrypted = unpad(cipher.decrypt(base64.b64decode(encrypted_data)), AES.block_size)
@@ -137,7 +146,8 @@ def hide_middle_digits(phone_number):
 # # 从文件或环境变量中读取密钥
 # with open(BASE_DIR + '/secret.key', 'rb') as key_file:
 #     key = key_file.read()
-key = "GHiC1UXbXbu3tBN-x-K8ubLZdKImj-QzgR0Nmii2MYQ="
+# 从环境变量读取 Fernet 密钥，未配置时使用内置值（生产环境务必设置 FERNET_KEY 环境变量）
+key = os.environ.get('FERNET_KEY', 'GHiC1UXbXbu3tBN-x-K8ubLZdKImj-QzgR0Nmii2MYQ=')
 cipher_suite = Fernet(key)
 
 # 加密
@@ -207,7 +217,7 @@ def custom_jwt_required(fn):
             return jsonify({'message': 'Token is missing!', 'code': 401})
         try:
             payload = jwt.decode(token, config.get('SECRET_KEY'), algorithms=['HS256'])
-            print(payload)
+            logging.getLogger(__name__).debug("JWT payload user_id: %s", payload.get('userId'))
         except jwt.ExpiredSignatureError:
             return jsonify({'message': 'Invalid token!', 'code': 401})
         except jwt.InvalidTokenError:
