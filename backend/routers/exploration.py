@@ -31,6 +31,14 @@ exploration_bp = Blueprint('exploration', __name__)
 @exploration_bp.route('/create/belong_system', methods=['POST'])
 @custom_jwt_required
 def create_belong_system():
+    """新建所属系统记录。
+
+    权限：仅管理员（ADMIN_ROLES）可操作。
+    Body JSON: system_name, department, belonging_department, run_status,
+               network, build_unit, construction_unit, build_method,
+               system_summary, user_object, system_type, funds_source, notes, deptId, userId
+    Returns: {code: 200} | {code: 203, msg}
+    """
     data = request.get_json()
     system_info = BelongSystem(
         id=random.randint(10 ** 15, 10 ** 16 - 1),
@@ -62,6 +70,11 @@ def create_belong_system():
 @exploration_bp.route('/query/belong_system', methods=['GET'])
 @custom_jwt_required
 def query_belong_system():
+    """查询当前用户权限范围内的所有所属系统（不分页）。
+
+    Query params: userId, deptId
+    Returns: {code: 200, data: [...]} — 含 datasource_count 聚合字段
+    """
     dept_id = request.args.get('deptId')
     user_id = request.args.get('userId')
     sys_dept = SysDept.query.filter_by(dept_id=dept_id).first()
@@ -96,6 +109,15 @@ def query_belong_system():
 @exploration_bp.route('/query/filter/belong_system', methods=['POST'])
 @custom_jwt_required
 def query_filter_belong_system():
+    """分页查询所属系统，支持按系统名称、所属处室过滤。
+
+    权限范围由 role_id 决定：
+      ADMIN_ROLES   → 全量
+      DIST_ADMIN    → 本区县及上级市辖范围
+      其他          → 仅本部门
+    Body JSON: page, per_page, system_name?, belonging_department?, deptId, userId
+    Returns: {code: 200, data: {data, count, page, per_page}}
+    """
     data = request.get_json()
     page = data.get('page', 1)
     per_page = data.get('per_page', 999999)
@@ -196,6 +218,12 @@ def query_filter_belong_system():
 @exploration_bp.route('/update/belong_system', methods=['POST'])
 @custom_jwt_required
 def update_belong_system():
+    """更新所属系统信息。
+
+    权限：仅管理员（ADMIN_ROLES）可操作。
+    Body JSON: id + 可更新字段（同 create）
+    Returns: {code: 200} | {code: 203, msg}
+    """
     data = request.get_json()
     belong_system_info = BelongSystem.query.filter_by(id=data.get('id')).first()
     belong_system_info.system_name = data.get('system_name')
@@ -223,6 +251,11 @@ def update_belong_system():
 @exploration_bp.route('/delete/belong_system', methods=['POST'])
 @custom_jwt_required
 def delete_belong_system():
+    """删除所属系统及其关联数据源（级联）。
+
+    Body JSON: id
+    Returns: {code: 200} | {code: 101, msg} 若存在探查任务则拒绝删除
+    """
     data = request.get_json()
     belong_system_info = BelongSystem.query.filter_by(id=data.get('id'),
                                                       department_id=data.get('department_id')).first()
@@ -238,6 +271,12 @@ def delete_belong_system():
 @exploration_bp.route('/import/belong_system', methods=['POST'])
 @custom_jwt_required
 def import_belong_system():
+    """批量导入所属系统（Excel 上传）。
+
+    Form-data: file (xlsx), deptId, userId
+    逻辑：逐行校验 → 已存在则更新，不存在则新增 → 批量提交。
+    Returns: {code: 200, data: {fail_path?}} 含失败原因 xlsx 下载路径（如有）
+    """
     from backend.config import BASE_DIR
     import uuid
     file = request.files['file']
@@ -475,6 +514,12 @@ def import_belong_system():
 @exploration_bp.route('/download/belong_system', methods=['POST'])
 @custom_jwt_required
 def download_belong_system():
+    """下载导入失败原因 xlsx 文件。
+
+    安全：路径必须在 BASE_DIR/template/system/ 内且以 .xlsx 结尾，否则 403。
+    Body JSON: file_path (服务端返回的相对安全路径)
+    Returns: xlsx 附件 | 403 | 404
+    """
     # 安全校验：只允许下载服务端生成的临时文件（template/system/ 目录下的 xlsx）
     raw_path = request.get_json().get('file_path', '')
     allowed_base = os.path.abspath(os.path.join(BASE_DIR, 'template', 'system'))
@@ -489,6 +534,11 @@ def download_belong_system():
 @exploration_bp.route('/export/belong_system', methods=['POST'])
 @custom_jwt_required
 def export_belong_system():
+    """导出当前用户权限范围内的所属系统为 xlsx。
+
+    Body JSON: deptId, userId, system_name?, belonging_department?
+    Returns: xlsx 附件
+    """
     from backend.config import BASE_DIR
     from backend.template.mapping import belong_system_mapping
     path = os.path.join(BASE_DIR, 'template', 'system.xlsx')
@@ -565,6 +615,15 @@ def export_belong_system():
 @exploration_bp.route('/create/datasource', methods=['POST'])
 @custom_jwt_required
 def create_datasource():
+    """新建数据源连接配置。
+
+    数据库密码使用 Fernet 加密存储。
+    Body JSON: datasource_name, database_type, database_address, port,
+               database_name, database_username, database_password,
+               belonging_system_id, belonging_system_department_id, schema_name,
+               status（1=系统探查/2=结果表探查）, table_name?, deptId, userId
+    Returns: {code: 200} | {code: 203, msg}
+    """
     # cur_name = get_jwt_identity()
     data = request.get_json()
     database_address = data.get('database_address') + ':' + data.get('port')
@@ -609,6 +668,13 @@ def query_datasource():
 @exploration_bp.route('/query/filter/datasource', methods=['POST'])
 @custom_jwt_required
 def query_filter_datasource():
+    """分页查询数据源，支持按名称、所属系统过滤。
+
+    权限范围同 query_filter_belong_system。
+    Body JSON: page, per_page, datasource_name?, belonging_system_id?,
+               belonging_system_department_id?, belonging_department?, deptId, userId
+    Returns: {code: 200, data: {data, count, page, per_page}}
+    """
     data = request.get_json()
     page = data.get('page', 1)
     per_page = data.get('per_page', 10)
@@ -733,6 +799,12 @@ def delete_datasource():
 @exploration_bp.route('/test_connect', methods=['POST'])
 @custom_jwt_required
 def test_connect():
+    """测试数据库连接可达性（不保存任何配置）。
+
+    Body JSON: database_type, database_address, port, database_name,
+               database_username, database_password
+    Returns: {code: 200} 连接成功 | {code: 203, msg} 连接失败
+    """
     # import cx_Oracle
     # cx_Oracle.init_oracle_client(lib_dir="/root/instantclient_12_2")
     try:
@@ -770,6 +842,12 @@ def test_connect():
 @exploration_bp.route('/schedule/add', methods=['POST'])
 @custom_jwt_required
 def schedule_add():
+    """创建并注册定时探查任务（APScheduler）。
+
+    Body JSON: schedule_name, datasource_id, method（day/week/month）,
+               execute_time, deptId, userId
+    Returns: {code: 200} | {code: 203, msg}
+    """
     data = request.get_json()
     minute = data.get('minute')
     hour = data.get('hour')
@@ -810,6 +888,12 @@ def schedule_add():
 @exploration_bp.route('/schedule/immediately', methods=['POST'])
 @custom_jwt_required
 def schedule_immediately():
+    """立即执行一批探查任务（绕过定时调度）。
+
+    校验当前并发执行数不超过 config.thread 上限。
+    Body JSON: schedule_ids[], deptId, userId
+    Returns: {code: 200} | {code: 203, msg} 超并发上限时拒绝
+    """
     data = request.get_json()
     scheduler_ids = data.get('schedule_ids')
     for scheduler_id in scheduler_ids:
@@ -879,6 +963,13 @@ def schedule_query():
 @exploration_bp.route('/schedule/filter/query', methods=['POST'])
 @custom_jwt_required
 def schedule_filter_query():
+    """分页查询探查执行记录，支持 5 个可选过滤条件。
+
+    权限范围同 query_filter_belong_system。
+    Body JSON: page, per_page, schedule_id?, schedule_name?,
+               datasource_name?, status?, mode?, deptId, userId
+    Returns: {code: 200, data: {data, count, page, per_page}}
+    """
     data = request.get_json()
     page = data.get('page', 1)
     per_page = data.get('per_page', 10)
@@ -1043,6 +1134,13 @@ def exploration_query():
 @exploration_bp.route('/exploration/filter/query', methods=['POST'])
 @custom_jwt_required
 def exploration_filter_query():
+    """分页查询探查任务配置列表，支持名称/数据源/模式过滤。
+
+    权限范围同 query_filter_belong_system。
+    Body JSON: page, per_page, schedule_name?, datasource_name?, mode?,
+               belonging_department?, deptId, userId
+    Returns: {code: 200, data: {data, count, page, per_page}}
+    """
     data = request.get_json()
     page = data.get('page')
     per_page = data.get('per_page')
@@ -1157,6 +1255,14 @@ def metadata_table_query():
 @exploration_bp.route('/metadata/table/filter/query', methods=['POST'])
 @custom_jwt_required
 def metadata_table_filter_query():
+    """查询某次探查执行的表变更列表，支持表名/变更状态过滤及排序。
+
+    Body JSON: schedule_id, schedule_name?(表名模糊搜索), status?(新增/变更/一致),
+               sort_key?, desc?(asc/desc), page, per_page
+    Returns: {code: 200, data: {data, table_total, add_table, update_table,
+                                field_count_total, add_field_count, update_field,
+                                delete_table_count, delete_field_count}}
+    """
     data = request.get_json()
     page = data.get('page', 1)
     per_page = data.get('per_page', 10)
@@ -1232,6 +1338,11 @@ def metadata_table_filter_query():
 @exploration_bp.route('/metadata/field/filter/query', methods=['POST'])
 @custom_jwt_required
 def metadata_field_filter_query():
+    """查询某张表的字段变更列表，支持字段名/变更状态过滤。
+
+    Body JSON: schedule_id, table_info_id, field_name?, contrast_status?, page, per_page
+    Returns: {code: 200, data: {data, count, ...字段统计}}
+    """
     data = request.get_json()
     page = data.get('page', 1)
     per_page = data.get('per_page', 10)
@@ -1284,6 +1395,12 @@ def metadata_field_filter_query():
 @exploration_bp.route('/upload/resources', methods=['POST'])
 @custom_jwt_required
 def upload_resources():
+    """上传数据资源文件（multipart/form-data）。
+
+    安全：用 os.path.basename 净化文件名，防路径穿越。
+    Form-data: files[], deptId, userId
+    Returns: {code: 200}
+    """
     if 'file' not in request.files:
         return 'No file part', 400
     files = request.files.getlist('file')
@@ -1531,6 +1648,11 @@ def query_user():
 @exploration_bp.route('/resources/auth', methods=['POST'])
 @custom_jwt_required
 def resources_auth():
+    """批量授权用户访问指定数据资源。
+
+    Body JSON: resource_id, user_ids[]
+    Returns: {code: 200}
+    """
     data = request.get_json()
     user_ids = data.get('user_ids')
     data_resources_id = data.get('data_resources_id')
@@ -1562,6 +1684,12 @@ def judge_user_auth():
 @exploration_bp.route('/download/resources', methods=['POST'])
 @custom_jwt_required
 def download_resources():
+    """下载数据资源文件。
+
+    安全：路径必须在 UPLOAD_FOLDER 内，否则 403。
+    Body JSON: id（DataResources 主键）
+    Returns: 文件附件 | 403 | 404
+    """
     data = request.get_json()
     data_resources_id = data.get('data_resources_id')
     data_resources = DataResources.query.filter_by(id=data_resources_id).first()
