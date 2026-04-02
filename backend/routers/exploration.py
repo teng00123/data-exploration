@@ -17,7 +17,7 @@ from backend.database.exploration_model import TableInfo, FieldInfo, DatabaseCha
 from backend.database.schedule_info import ScheduleInfo, ScheduleExecute
 from backend.utils import hide_middle_digits,encrypt_password
 from backend.config import scheduler, db
-from sqlalchemy import create_engine, desc, and_, or_
+from sqlalchemy import create_engine, desc, and_, or_, func
 import uuid
 import urllib.parse
 import dmPython
@@ -186,14 +186,40 @@ def query_filter_belong_system():
             )
         )
 
+    # 用 subquery 一次性统计每个系统的数据源数量，避免 N+1 查询
+    datasource_count_sq = (
+        db.session.query(
+            DatasourceInfo.belonging_system_id,
+            DatasourceInfo.belonging_system_department_id,
+            func.count(DatasourceInfo.id).label('cnt')
+        )
+        .group_by(
+            DatasourceInfo.belonging_system_id,
+            DatasourceInfo.belonging_system_department_id,
+        )
+        .subquery()
+    )
     count = query.count()
     belong_system_infos = query.order_by(BelongSystem.update_time.desc()).paginate(page=page, per_page=per_page).items
+    # 取本页所有系统 id，批量查 subquery 结果
+    page_ids = [(b.id, b.belonging_system_department_id) for b in belong_system_infos]
+    if page_ids:
+        count_rows = db.session.query(
+            datasource_count_sq.c.belonging_system_id,
+            datasource_count_sq.c.belonging_system_department_id,
+            datasource_count_sq.c.cnt,
+        ).filter(
+            datasource_count_sq.c.belonging_system_id.in_([pid for pid, _ in page_ids])
+        ).all()
+        count_map = {(r.belonging_system_id, r.belonging_system_department_id): r.cnt for r in count_rows}
+    else:
+        count_map = {}
     belong_system_info_list = []
     for belong_system_info in belong_system_infos:
         belong_system_dict = belong_system_info.__dict__
-        datasource_count = DatasourceInfo.query.filter_by(belonging_system_id=belong_system_dict.get('id'),
-                                                          belonging_system_department_id=belong_system_dict.get(
-                                                              'belonging_system_department_id')).count()
+        datasource_count = count_map.get(
+            (belong_system_dict.get('id'), belong_system_dict.get('belonging_system_department_id')), 0
+        )
         belong_system_dict['id'] = str(belong_system_dict.get('id'))
         belong_system_dict['department_id'] = str(belong_system_dict.get('department_id'))
         belong_system_dict['network'] = belong_system_dict.get('network').split(',') if belong_system_dict.get('network') else []
@@ -734,17 +760,26 @@ def query_filter_datasource():
     query = query.order_by(DatasourceInfo.create_time.desc())
     count = query.count()
     datasource_infos = query.paginate(page=page, per_page=per_page).items
+    # 批量查关联表，避免 N+1（每条数据源原本触发 2 次额外查询）
+    system_ids = list({d.belonging_system_id for d in datasource_infos})
+    create_ids = list({d.create_id for d in datasource_infos})
+    system_map = {
+        s.id: s for s in BelongSystem.query.filter(BelongSystem.id.in_(system_ids)).all()
+    } if system_ids else {}
+    user_map = {
+        u.user_id: u for u in SysUser.query.filter(SysUser.user_id.in_(create_ids)).all()
+    } if create_ids else {}
     for datasource_info in datasource_infos:
         datasource_dict = datasource_info.__dict__
-        belonging_system_info = BelongSystem.query.filter_by(id=datasource_dict.get('belonging_system_id')).first()
-        sys_user = SysUser.query.filter_by(user_id=datasource_dict.get('create_id')).first()
+        belonging_system_info = system_map.get(datasource_dict.get('belonging_system_id'))
+        sys_user = user_map.get(datasource_dict.get('create_id'))
         database_address = datasource_dict['database_address'].split(':')
         datasource_dict['database_address'] = database_address[0]
         datasource_dict['port'] = database_address[1]
-        datasource_dict['system_name'] = belonging_system_info.system_name
-        datasource_dict['department'] = belonging_system_info.department
-        datasource_dict['belonging_department'] = belonging_system_info.belonging_department
-        datasource_dict['create_by'] = sys_user.nick_name
+        datasource_dict['system_name'] = belonging_system_info.system_name if belonging_system_info else ''
+        datasource_dict['department'] = belonging_system_info.department if belonging_system_info else ''
+        datasource_dict['belonging_department'] = belonging_system_info.belonging_department if belonging_system_info else ''
+        datasource_dict['create_by'] = sys_user.nick_name if sys_user else ''
     datasource_info_list = [datasource_info.__dict__ for datasource_info in datasource_infos]
     datasource_info_list = [{k: str(v) for k, v in info.items() if k != '_sa_instance_state'} for info in
                             datasource_info_list]
