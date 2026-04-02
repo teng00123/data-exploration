@@ -1047,7 +1047,6 @@ def rule_timeliness_run():
     return SuccessResponse().to_response()
 
 @router.post('/generate/report')
-# @record_user_operation(operation_type='生成报告')
 def generate_report():
     data = request.get_json()
     datasource_id = data.get('datasource_id')
@@ -1140,13 +1139,11 @@ def generate_report():
 
 @router.post('/stream')
 def stream():
-    # 假设我们有一个生成器函数 get_data_generator()
     data_gen = get_data_generator()
     gen_response = StreamResponse(data=data_gen)
     return gen_response.to_response()
 
 def get_data_generator():
-    # 这是一个示例生成器，实际应用中你应该从数据库或其他数据源获取数据
     for i in range(5):
         time.sleep(0.5)
         yield {"id": i, "value": f"Item {i}"}

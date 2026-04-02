@@ -624,7 +624,6 @@ def create_datasource():
                status（1=系统探查/2=结果表探查）, table_name?, deptId, userId
     Returns: {code: 200} | {code: 203, msg}
     """
-    # cur_name = get_jwt_identity()
     data = request.get_json()
     database_address = data.get('database_address') + ':' + data.get('port')
     datasource_info = DatasourceInfo(
@@ -632,7 +631,6 @@ def create_datasource():
         database_type=data.get('database_type'),
         belonging_system_id=data.get('belonging_system_id'),
         belonging_system_department_id=data.get('belonging_system_department_id'),
-        # user_admin_id=user_admin_id,
         database_name=data.get('database_name'),
         database_address=database_address,
         database_username=data.get('database_username'),
@@ -805,8 +803,6 @@ def test_connect():
                database_username, database_password
     Returns: {code: 200} 连接成功 | {code: 203, msg} 连接失败
     """
-    # import cx_Oracle
-    # cx_Oracle.init_oracle_client(lib_dir="/root/instantclient_12_2")
     try:
         data = request.get_json()
         database_type = data.get('database_type')
@@ -829,7 +825,6 @@ def test_connect():
             db_url = f'mssql+pyodbc://{username}:{password}@{database_address}/{database_name}?driver=ODBC+Driver+17+for+SQL+Server'
         if database_type == 'dmdb':
             conn = dmPython.connect(user=username, password=password, server=database_address, port=prot)
-            # conn.connect()
             return jsonify({'code': 200})
         engine = create_engine(db_url)
         engine.connect()
@@ -908,8 +903,6 @@ def schedule_immediately():
         data['schedule_type'] = "immediately"
         data_copy = copy.deepcopy(data)
         r.publish('scheduler', json.dumps(data_copy))
-    # json_object = json.dumps({"code": 200})
-    # yield f"event:message\ndata:" + json_object + "\n\n"
     return jsonify({'code': 200})
 
 
@@ -1090,26 +1083,7 @@ def schedule_start():
         'schedule_type': 'time'
     }
     r.publish('scheduler', json.dumps(data))
-    # try:
-    #     if schedule_info.method == 'day':
-    #         scheduler.add_job(func=_data_exploration, trigger='cron', id=str(schedule_info.id),
-    #                           name=schedule_info.name, args=[data],
-    #                           hour=hour,
-    #                           minute=minute)
-    #     if schedule_info.method == 'week':
-    #         scheduler.add_job(func=_data_exploration, trigger='cron', id=str(schedule_info.id),
-    #                           name=schedule_info.name, args=[data],
-    #                           hour=hour,
-    #                           minute=minute, day_of_week=week)
-    #     if schedule_info.method == 'month':
-    #         scheduler.add_job(func=_data_exploration, trigger='cron', id=str(schedule_info.id),
-    #                           name=schedule_info.name, args=[data],
-    #                           hour=hour,
-    #                           minute=minute, day=day)
     schedule_info.is_start = True
-    # except  Exception as e:
-    #     name = scheduler.get_job(str(schedule_info.id)).name
-    #     return jsonify({'code': 203,'msg':str(e),'name':name})
     db.session.commit()
     return jsonify({'code': 200})
 
@@ -1302,7 +1276,6 @@ def metadata_table_filter_query():
         DatabaseChangeLog.table_info_id.in_(table_id)).count()
     for table_info in table_infos:
         table_info_dict = table_info.__dict__
-        # print(table_change.change_status)
         if table_info.change_status == 0:
             change_status = '新增'
         elif table_info.change_status == 1:

@@ -1,6 +1,7 @@
 from datetime import datetime
 import time
 from flask import Flask
+# CORS 已由前端 Nginx 反代统一处理，无需在 Flask 层启用
 # from flask_cors import CORS
 from backend.config import scheduler, db, config
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
@@ -68,10 +69,10 @@ def init_app():
     app.logger.addHandler(handler)
     jwt = JWTManager(app)
     db.init_app(app)
-    # CORS(app)
+    # CORS(app)  # 已由 Nginx 反代处理，保留此行以便本地开发时按需启用
     from backend.routers import exploration_bp
     from backend.routers import dept_bp
-    # from backend.routers import llm_chat_bp
+    # from backend.routers import llm_chat_bp  # LLM 对话模块（功能开发中，暂未启用）
     from backend.routers import report_froms_bp
     from backend.routers import oauth_bp
     from backend.routers import auth_bp
