@@ -458,7 +458,7 @@ def import_belong_system():
             logging.error(f'import_belong_system error: {e}')
             db.session.rollback()
             return jsonify({'code': 203, "msg": "数据格式有误,请检查后重试"})
-        path = BASE_DIR + f'/template/system/{str(uuid.uuid4())}.xlsx'
+        path = os.path.join(BASE_DIR, 'template', 'system', f'{uuid.uuid4()}.xlsx')
         if len(fail_list) > 0:
             headers = list(fail_list[0].keys())
             json_data = pd.DataFrame(fail_list)
@@ -491,7 +491,7 @@ def download_belong_system():
 def export_belong_system():
     from backend.config import BASE_DIR
     from backend.template.mapping import belong_system_mapping
-    path = BASE_DIR + '/template/system.xlsx'
+    path = os.path.join(BASE_DIR, 'template', 'system.xlsx')
     data = request.get_json()
     user_id = data.get('userId')
     dept_id = data.get('deptId')
