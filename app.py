@@ -49,8 +49,14 @@ def init_app():
     # 设置 SQLALCHEMY_POOL_RECYCLE，定义连接池中连接的回收时间（秒）
     app.config['SQLALCHEMY_POOL_RECYCLE'] = 1800
     import datetime
-    # JWT secret 从环境变量读取，未配置时使用内置值（生产环境务必设置 JWT_SECRET_KEY 环境变量）
-    app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY', 'Xi_HpEd93wgZ5G_HCaz1GT11PKalgUQo5aeEXidLkg8=')
+    # JWT secret 强制从环境变量或 config.yaml 的 SECRET_KEY 读取，不允许使用默认值
+    jwt_secret = os.environ.get('JWT_SECRET_KEY') or config.get('SECRET_KEY')
+    if not jwt_secret:
+        raise RuntimeError(
+            "JWT_SECRET_KEY is not configured. "
+            "Set the JWT_SECRET_KEY environment variable or SECRET_KEY in config.yaml."
+        )
+    app.config['JWT_SECRET_KEY'] = jwt_secret
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(minutes=10)
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
     # 设置日志文件路径

@@ -1,0 +1,65 @@
+# ============================================================
+# config.yaml.example — 配置模板
+# 使用方法：
+#   cp backend/config.yaml.example backend/config.yaml
+#   然后填入你的真实配置值
+# 注意：config.yaml 已加入 .gitignore，禁止提交到版本控制！
+# ============================================================
+
+# 数据库配置
+database:
+  host: ${DB_HOST}           # 例：192.168.1.100
+  port: ${DB_PORT}           # 例：5432
+  user: ${DB_USER}           # 例：app_user
+  password: ${DB_PASSWORD}   # 请使用强密码
+
+# 定时任务配置
+scheduler:
+  thread_num: 10
+  process_num: 1
+  max_instances: 3
+
+# 文件路径（使用相对路径或环境变量）
+excel_file: ${EXCEL_FILE_PATH}      # 例：./data_resources/
+ai_excel_file: ${AI_EXCEL_FILE_PATH}
+report_file: ${REPORT_FILE_PATH}
+UPLOAD_FOLDER: ${UPLOAD_FOLDER}     # 例：./backups/
+
+# 大模型服务
+llm_url: ${LLM_URL}
+
+# 短信配置
+sms_config:
+  openEnable: false
+  messageUrl: ${SMS_MESSAGE_URL}
+  messageAppId: ${SMS_APP_ID}
+  messageAppKey: ${SMS_APP_KEY}
+  templateMapping:
+    1: ${SMS_TEMPLATE_1}
+    2: ${SMS_TEMPLATE_2}
+
+# 第三方 API Key（按需填写）
+access_key: ''
+api_key: ''
+app_id: ''
+
+# OpenAI 配置（建议通过 OPENAI_API_KEY 环境变量注入，此处留空）
+openai:
+  api_key: ${OPENAI_API_KEY}   # 强烈建议使用环境变量而非此文件
+  api_base: https://api.openai.com/v1
+  model: gpt-3.5-turbo
+  temperature: 0
+  max_tokens: 4000
+
+# Redis 配置
+redis:
+  host: ${REDIS_HOST}         # 例：127.0.0.1
+  is_password: true
+  password: ${REDIS_PASSWORD} # 请使用强密码
+  port: 6379
+
+# 应用密钥（用于 JWT 签名）
+# 生成命令：python -c "import secrets; print(secrets.token_urlsafe(32))"
+SECRET_KEY: ${SECRET_KEY}
+
+thread: 5
