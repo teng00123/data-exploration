@@ -912,82 +912,21 @@ def schedule_filter_query():
             BelongSystem.department_id.in_(ids_list),
         )
     ).all()]
-    query = ScheduleExecute.query.join(DatasourceInfo).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
-    if mode:
-        query = ScheduleExecute.query.join(DatasourceInfo).filter_by(status=mode).join(BelongSystem,
-                                                                BelongSystem.id == DatasourceInfo.belonging_system_id).filter(
-            BelongSystem.id.in_(belongsystem_ids))
-
-    if schedule_name:
-        query = ScheduleExecute.query.filter(ScheduleExecute.schedule_name.like(f"%{schedule_name}%")).join(
-            DatasourceInfo).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
-
-    if mode and schedule_name:
-        query = ScheduleExecute.query.filter(ScheduleExecute.schedule_name.like(f"%{schedule_name}%")).join(
-            DatasourceInfo).filter_by(status=mode).join(BelongSystem, BelongSystem.id == DatasourceInfo.belonging_system_id).filter(
-            BelongSystem.id.in_(belongsystem_ids))
-
-    if datasource_name:
-        query = ScheduleExecute.query.filter_by(
-            datasource_id=datasource_name).join(DatasourceInfo).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
-    if status:
-        query = ScheduleExecute.query.filter_by(schedule_status=status).join(DatasourceInfo).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
+    # 链式过滤：消除 2^5=32 个组合分支
+    query = (ScheduleExecute.query
+             .join(DatasourceInfo)
+             .join(BelongSystem, BelongSystem.id == DatasourceInfo.belonging_system_id)
+             .filter(BelongSystem.id.in_(belongsystem_ids)))
     if schedule_id:
-        query = ScheduleExecute.query.filter_by(schedule_id=schedule_id).join(DatasourceInfo).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
-
-    if schedule_id and schedule_name:
-        query = ScheduleExecute.query.filter_by(schedule_id=schedule_id).filter(
-            ScheduleExecute.schedule_name.like(f"%{schedule_name}%")).join(
-            DatasourceInfo).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
-    if schedule_id and datasource_name:
-        query = ScheduleExecute.query.filter_by(schedule_id=schedule_id).filter_by(
-            datasource_id=datasource_name).join(
-            DatasourceInfo).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
-    if schedule_id and status:
-        query = ScheduleExecute.query.filter_by(schedule_id=schedule_id, schedule_status=status).join(
-            DatasourceInfo).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
-    if schedule_name and datasource_name:
-        query = ScheduleExecute.query.filter(ScheduleExecute.schedule_name.like(f"%{schedule_name}%")).filter_by(
-            datasource_id=datasource_name).join(
-            DatasourceInfo).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
-    if schedule_name and status:
-        query = ScheduleExecute.query.filter(ScheduleExecute.schedule_name.like(f"%{schedule_name}%")).filter_by(
-            schedule_status=status).join(
-            DatasourceInfo).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
-    if schedule_name and status and mode:
-        query = ScheduleExecute.query.filter(ScheduleExecute.schedule_name.like(f"%{schedule_name}%")).filter_by(
-            schedule_status=status).join(
-            DatasourceInfo).filter_by(status=mode).join(BelongSystem, BelongSystem.id == DatasourceInfo.belonging_system_id).filter(
-            BelongSystem.id.in_(belongsystem_ids))
-
-    if datasource_name and status:
-        query = ScheduleExecute.query.filter_by(schedule_status=status).filter_by(
-            datasource_id=datasource_name).join(
-            DatasourceInfo).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
-
-    if schedule_id and schedule_name and datasource_name:
-        query = ScheduleExecute.query.filter(ScheduleExecute.schedule_name.like(f"%{schedule_name}%")).filter_by(
-            schedule_id=schedule_id).filter_by(datasource_id=datasource_name).join(
-            DatasourceInfo).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
-    if schedule_id and schedule_name and status:
-        query = ScheduleExecute.query.filter(ScheduleExecute.schedule_name.like(f"%{schedule_name}%")).filter_by(
-            schedule_status=status,
-            schedule_id=schedule_id).join(
-            DatasourceInfo).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
-    if schedule_id and datasource_name and status:
-        query = ScheduleExecute.query.filter_by(schedule_status=status,
-                                                schedule_id=schedule_id).filter_by(datasource_id=datasource_name).join(
-            DatasourceInfo).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
-    if schedule_name and datasource_name and status:
-        query = ScheduleExecute.query.filter(ScheduleExecute.schedule_name.like(f"%{schedule_name}%")).filter_by(
-            datasource_id=datasource_name).filter_by(schedule_status=status).join(
-            DatasourceInfo).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
-
-    if schedule_id and schedule_name and datasource_name and status:
-        query = ScheduleExecute.query.filter(ScheduleExecute.schedule_name.like(f"%{schedule_name}%")).filter_by(
-            schedule_status=status,
-            schedule_id=schedule_id).filter_by(datasource_id=datasource_name).join(
-            DatasourceInfo).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
+        query = query.filter(ScheduleExecute.schedule_id == schedule_id)
+    if schedule_name:
+        query = query.filter(ScheduleExecute.schedule_name.like(f"%{schedule_name}%"))
+    if datasource_name:
+        query = query.filter(ScheduleExecute.datasource_id == datasource_name)
+    if status:
+        query = query.filter(ScheduleExecute.schedule_status == status)
+    if mode:
+        query = query.filter(DatasourceInfo.status == mode)
 
     count = query.count()
     schedule_execute = query.order_by(ScheduleExecute.create_time.desc()).paginate(page=page, per_page=per_page).items
@@ -1145,31 +1084,18 @@ def exploration_filter_query():
             BelongSystem.department_id.in_(ids_list),
         )
     ).all()]
-    query = ScheduleInfo.query.join(DatasourceInfo).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
+    # 链式过滤：消除 2^3=8 个组合分支
+    query = (ScheduleInfo.query
+             .join(DatasourceInfo)
+             .join(BelongSystem, BelongSystem.id == DatasourceInfo.belonging_system_id)
+             .filter(BelongSystem.id.in_(belongsystem_ids)))
     if schedule_name:
-        query = ScheduleInfo.query.filter(ScheduleInfo.schedule_name.like(f"%{schedule_name}%")).join(
-            DatasourceInfo).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
+        query = query.filter(ScheduleInfo.schedule_name.like(f"%{schedule_name}%"))
     if datasource_name:
-        query = ScheduleInfo.query.filter_by(datasource_id=datasource_name).join(DatasourceInfo).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
+        query = query.filter(ScheduleInfo.datasource_id == datasource_name)
     if mode:
-        query = ScheduleInfo.query.join(DatasourceInfo).filter_by(status=mode).join(BelongSystem,
-                                                             BelongSystem.id == DatasourceInfo.belonging_system_id).filter(
-            BelongSystem.id.in_(belongsystem_ids))
+        query = query.filter(DatasourceInfo.status == mode)
 
-    if schedule_name and datasource_name:
-        query = ScheduleInfo.query.filter(ScheduleInfo.schedule_name.like(f"%{schedule_name}%")).filter_by(
-            datasource_id=datasource_name).join(DatasourceInfo).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
-    if schedule_name and mode:
-        query = ScheduleInfo.query.filter(ScheduleInfo.schedule_name.like(f"%{schedule_name}%")).join(
-            DatasourceInfo).filter_by(status=mode).join(BelongSystem, BelongSystem.id == DatasourceInfo.belonging_system_id).filter(
-            BelongSystem.id.in_(belongsystem_ids))
-    if datasource_name and mode:
-        query = ScheduleInfo.query.filter_by(datasource_id=datasource_name).join(DatasourceInfo).filter_by(status=mode).join(BelongSystem,BelongSystem.id == DatasourceInfo.belonging_system_id).filter(BelongSystem.id.in_(belongsystem_ids))
-    if schedule_name and datasource_name and mode:
-        query = ScheduleInfo.query.filter(ScheduleInfo.schedule_name.like(f"%{schedule_name}%")).filter_by(
-            datasource_id=datasource_name).join(DatasourceInfo).filter_by(status=mode).join(BelongSystem,
-                                                                     BelongSystem.id == DatasourceInfo.belonging_system_id).filter(
-            BelongSystem.id.in_(belongsystem_ids))
     count = query.count()
     schedule_infos = query.all()
     schedule_infos_list = []
@@ -1245,16 +1171,13 @@ def metadata_table_filter_query():
         change_status = 2
     sort_key = data.get('sort_key', None)
     order = data.get('desc', 'asc')
-    query = TableHistoryTemplateInfo.query.filter_by(schedule_execute_id=schedule_id).order_by(TableHistoryTemplateInfo.change_status.asc())
+    # 链式过滤：消除 2^2=4 个组合分支
+    query = TableHistoryTemplateInfo.query.filter_by(schedule_execute_id=schedule_id)
     if table_name:
-        query = TableHistoryTemplateInfo.query.filter_by(schedule_execute_id=schedule_id).filter(
-            TableHistoryTemplateInfo.table_name.like(f"%{table_name}%")).order_by(TableHistoryTemplateInfo.change_status.asc())
+        query = query.filter(TableHistoryTemplateInfo.table_name.like(f"%{table_name}%"))
     if contrast_status:
-        query = TableHistoryTemplateInfo.query.filter_by(schedule_execute_id=schedule_id).filter_by(
-            change_status=change_status).order_by(TableHistoryTemplateInfo.change_status.asc())
-    if table_name and contrast_status:
-        query = TableHistoryTemplateInfo.query.filter_by(schedule_execute_id=schedule_id).filter(
-            TableHistoryTemplateInfo.table_name.like(f"%{table_name}%")).filter_by(change_status=change_status).order_by(TableHistoryTemplateInfo.change_status.asc())
+        query = query.filter_by(change_status=change_status)
+    query = query.order_by(TableHistoryTemplateInfo.change_status.asc())
     table_infos = query.order_by(TableHistoryTemplateInfo.data_total_change.desc()).all()
     table_infos_list = []
     table_id = [table_info.id for table_info in table_infos]
