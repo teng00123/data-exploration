@@ -1204,37 +1204,53 @@ def exploration_filter_query():
         query = query.filter(DatasourceInfo.status == mode)
 
     count = query.count()
-    schedule_infos = query.all()
+    schedule_infos = query.order_by(ScheduleInfo.update_time.desc()).paginate(page=page, per_page=per_page).items
+
+    # 仅针对当前页批量查关联表，避免全量加载后再 Python 切片
+    page_ds_ids = list({si.datasource_id for si in schedule_infos})
+    ds_map = {
+        d.id: d for d in DatasourceInfo.query.filter(DatasourceInfo.id.in_(page_ds_ids)).all()
+    } if page_ds_ids else {}
+    create_ids = list({ds_map[ds_id].create_id for ds_id in page_ds_ids if ds_id in ds_map})
+    user_map = {
+        u.user_id: u for u in SysUser.query.filter(SysUser.user_id.in_(create_ids)).all()
+    } if create_ids else {}
+
+    # 每个 schedule 只取当前页最新一条执行记录
+    from sqlalchemy.orm import aliased
+    page_si_ids = [si.id for si in schedule_infos]
+    if page_si_ids:
+        rn = func.row_number().over(
+            partition_by=ScheduleExecute.schedule_id,
+            order_by=ScheduleExecute.schedule_time.desc()
+        ).label('rn')
+        sub = db.session.query(ScheduleExecute, rn).filter(
+            ScheduleExecute.schedule_id.in_(page_si_ids)
+        ).subquery()
+        se_alias = aliased(ScheduleExecute, sub)
+        latest_executes = db.session.query(se_alias).filter(sub.c.rn == 1).all()
+        execute_map = {se.schedule_id: se for se in latest_executes}
+    else:
+        execute_map = {}
+
     schedule_infos_list = []
+    method_map = {'day': '每天', 'week': '每周'}
     for schedule_info in schedule_infos:
         schedule_info_dict = schedule_info.__dict__
-        datasource_info = DatasourceInfo.query.filter_by(id=schedule_info_dict.get('datasource_id')).first()
-        sys_user = SysUser.query.filter_by(user_id=datasource_info.create_id).first()
-        schedule_execute = ScheduleExecute.query.filter_by(schedule_id=schedule_info.id).order_by(
-            ScheduleExecute.schedule_time.desc()).first()
-        if schedule_execute:
-            execute_time = schedule_execute.schedule_time
-            execute_status = schedule_execute.schedule_status
-        else:
-            execute_time = ''
-            execute_status = ''
-        if schedule_info.method == 'day':
-            methods = '每天'
-        elif schedule_info.method == 'week':
-            methods = '每周'
-        else:
-            methods = '每月'
-        schedule_info_dict['datasource_name'] = datasource_info.datasource_name
+        datasource_info = ds_map.get(schedule_info_dict.get('datasource_id'))
+        sys_user = user_map.get(datasource_info.create_id) if datasource_info else None
+        schedule_execute = execute_map.get(schedule_info.id)
+        execute_time = schedule_execute.schedule_time if schedule_execute else ''
+        execute_status = schedule_execute.schedule_status if schedule_execute else ''
+        methods = method_map.get(schedule_info.method, '每月')
+        schedule_info_dict['datasource_name'] = datasource_info.datasource_name if datasource_info else ''
         schedule_info_dict['execute_time'] = execute_time
         schedule_info_dict['methods'] = methods
-        schedule_info_dict['create_by'] = sys_user.nick_name
-        schedule_info_dict['mode'] = '系统探查' if datasource_info.status =='1' else '结果表探查'
-        schedule_info_dict['execute_status'] = False if execute_status=='执行中' else True
+        schedule_info_dict['create_by'] = sys_user.nick_name if sys_user else ''
+        schedule_info_dict['mode'] = ('系统探查' if datasource_info.status == '1' else '结果表探查') if datasource_info else ''
+        schedule_info_dict['execute_status'] = False if execute_status == '执行中' else True
         schedule_infos_list.append(schedule_info_dict)
     schedule_infos_list = [{k: v for k, v in info.items() if k != '_sa_instance_state'} for info in schedule_infos_list]
-    start_index = (page - 1) * per_page
-    end_index = start_index + per_page
-    schedule_infos_list = schedule_infos_list[start_index:end_index]
     data = {
         'data': schedule_infos_list,
         'count': count,
