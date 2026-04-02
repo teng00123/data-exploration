@@ -1,8 +1,9 @@
+import os
 import uuid
 
 from backend.llm.openai import OpenAI, Prompt
 from collections import defaultdict
-from backend.config import config
+from backend.config import config, BASE_DIR
 import pandas as pd
 import json
 from openpyxl import load_workbook
@@ -70,7 +71,8 @@ def generate_final_result(content: list, process_list: list) -> str:
     headers = list(process_list[0].keys())
     json_data = pd.DataFrame(process_list)
     json_data.columns = headers
-    file_path = config.get('ai_excel_file') + f'{str(uuid.uuid4())}.xlsx'
+    file_path = os.path.join(BASE_DIR, 'template', 'AI_result', f'{uuid.uuid4()}.xlsx')
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
     json_data.to_excel(file_path, index=False)
     return file_path
 
@@ -86,7 +88,8 @@ def generate_check_final_result(content: list, process_list: list) -> str:
     headers = list(process_list[0].keys())
     json_data = pd.DataFrame(process_list)
     json_data.columns = headers
-    file_path = config.get('ai_excel_file') + f'{str(uuid.uuid4())}.xlsx'
+    file_path = os.path.join(BASE_DIR, 'template', 'AI_result', f'{uuid.uuid4()}.xlsx')
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
     json_data.to_excel(file_path, index=False)
 
     # 加载 Excel 文件

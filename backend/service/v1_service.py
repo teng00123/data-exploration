@@ -9,7 +9,7 @@ from celery import Celery
 from kombu.common import PREFETCH_COUNT_MAX
 from reportlab.lib.utils import ImageReader
 
-from backend.config import config
+from backend.config import config, BASE_DIR
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 import numpy as np
@@ -460,8 +460,9 @@ class ReportGenerateService:
         :param timeless_status 及时性检测结果
         :return:
         """
-        file_name = config.get('report_file') + file_name
-        doc = BaseDocTemplate(file_name, pagesize=A4)
+        file_path = os.path.join(BASE_DIR, 'check_files', file_name)
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        doc = BaseDocTemplate(file_path, pagesize=A4)
         frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id='normal')
         template = PageTemplate(id='Normal', frames=[frame], onPage=self.go)
         doc.addPageTemplates([template])

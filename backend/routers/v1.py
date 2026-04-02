@@ -15,7 +15,7 @@ from backend.database.exploration_model import DatasourceInfo, TableHistoryTempl
 from backend.database.quality_result import QualityExecute, QualityReportResult, QualityIntegrity, QualityRepeatability, \
     QualityTimeliness, QualityNormative, QualityNormativeDetail, QualityAccuracy, QualityConsistency
 from backend.database.quality_inspection import QualitySchedulerInfo
-from backend.config import r, config
+from backend.config import r, config, BASE_DIR
 from backend.response.code import SuccessResponse, ErrorResponse, FileResponse, StreamResponse
 from backend.utils import Pagination, record_user_operation, is_sql_injection_risky, aes_decrypt
 from backend.service.v1_service import CeleryService,ReportGenerateService
@@ -1331,7 +1331,7 @@ def report_download():
     datasource_id = data.get('datasource_id')
     try:
         file_name = str(execute_id) + str(datasource_id) + '.pdf'
-        file_path = config.get('report_file') + file_name
+        file_path = os.path.join(BASE_DIR, 'check_files', file_name)
         logger.debug('Report file path: %s', file_path)
         if not os.path.exists(file_path):
             return ErrorResponse(error_data='文件不存在').to_response()
