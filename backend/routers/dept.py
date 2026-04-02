@@ -3,6 +3,7 @@ from sqlalchemy import and_
 from backend.database.sys_model import SysDept, SysRole, SysUserRole, SysUser
 from backend.database.exploration_model import BelongSystem
 from backend.utils import custom_jwt_required
+from backend.constants.role_ids import ADMIN_ROLES, ALL_MGMT_ROLES, READONLY_ROLES, SUPER_ADMIN, PROV_ADMIN, CITY_ADMIN, DIST_ADMIN, NORMAL_USER
 
 dept_bp = Blueprint('dept', __name__)
 
@@ -16,7 +17,7 @@ def get_belonging_department():
                                                                                             SysUser.user_id == SysUserRole.user_id).filter_by(
         user_id=user_id).first()
     sys_user = SysUser.query.filter_by(user_id=user_id).first()
-    if sys_role.role_id in (1,1855189077904728066) and int(dept_id)==int(sys_user.dept_id):
+    if sys_role.role_id in frozenset({SUPER_ADMIN, PROV_ADMIN}) and int(dept_id)==int(sys_user.dept_id):
         dept_id = "1"
     query = SysDept.query.filter_by(parent_id=dept_id)
     department_infos = query.all()

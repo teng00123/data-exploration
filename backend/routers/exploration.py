@@ -8,6 +8,7 @@ import jwt
 import pandas as pd
 from flask import Blueprint, jsonify, request, send_file, Response
 from backend.utils import custom_jwt_required,record_user_operation
+from backend.constants.role_ids import ADMIN_ROLES, ALL_MGMT_ROLES, READONLY_ROLES, SUPER_ADMIN, PROV_ADMIN, CITY_ADMIN, DIST_ADMIN, NORMAL_USER
 from backend.config import config
 from backend.database.sys_model import SysDept, SysUser, SysUserRole, SysRole
 from backend.database.exploration_model import TableInfo, FieldInfo, DatabaseChangeLog, \
@@ -67,9 +68,9 @@ def query_belong_system():
     sys_role = SysRole.query.join(SysUserRole, SysRole.role_id == SysUserRole.role_id).join(SysUser,
                                                                                             SysUser.user_id == SysUserRole.user_id).filter_by(
         user_id=user_id).first()
-    if sys_role.role_id in (1, 1855189077904728066, 1855189303667335169):
+    if sys_role.role_id in ADMIN_ROLES:
         ids_list = [sys_dept.dept_id for sys_dept in SysDept.query.all()]
-    elif sys_role.role_id == 1855188956748062721:
+    elif sys_role.role_id == DIST_ADMIN:
         sys_dept = SysDept.query.filter_by(dept_id=dept_id).first()
         if sys_dept.parent_id != 1:
             ancestors = sys_dept.ancestors.split(',')
@@ -105,9 +106,9 @@ def query_filter_belong_system():
     sys_role = SysRole.query.join(SysUserRole, SysRole.role_id == SysUserRole.role_id).join(SysUser,
                                                                                             SysUser.user_id == SysUserRole.user_id).filter_by(
         user_id=user_id).first()
-    if sys_role.role_id in (1, 1855189077904728066, 1855189303667335169):
+    if sys_role.role_id in ADMIN_ROLES:
         ids_list = [sys_dept.dept_id for sys_dept in SysDept.query.all()]
-    elif sys_role.role_id == 1855188956748062721:
+    elif sys_role.role_id == DIST_ADMIN:
         sys_dept = SysDept.query.filter_by(dept_id=dept_id).first()
         if sys_dept.parent_id != 1:
             ancestors = sys_dept.ancestors.split(',')
@@ -497,9 +498,9 @@ def export_belong_system():
     sys_role = SysRole.query.join(SysUserRole, SysRole.role_id == SysUserRole.role_id).join(SysUser,
                                                                                             SysUser.user_id == SysUserRole.user_id).filter_by(
         user_id=user_id).first()
-    if sys_role.role_id in (1, 1855189077904728066, 1855189303667335169):
+    if sys_role.role_id in ADMIN_ROLES:
         ids_list = [sys_dept.dept_id for sys_dept in SysDept.query.all()]
-    elif sys_role.role_id == 1855188956748062721:
+    elif sys_role.role_id == DIST_ADMIN:
         sys_dept = SysDept.query.filter_by(dept_id=dept_id).first()
         if sys_dept.parent_id != 1:
             ancestors = sys_dept.ancestors.split(',')
@@ -619,9 +620,9 @@ def query_filter_datasource():
     sys_role = SysRole.query.join(SysUserRole, SysRole.role_id == SysUserRole.role_id).join(SysUser,
                                                                                             SysUser.user_id == SysUserRole.user_id).filter_by(
         user_id=data.get('userId')).first()
-    if sys_role.role_id in (1, 1855189077904728066, 1855189303667335169):
+    if sys_role.role_id in ADMIN_ROLES:
         ids_list = [sys_dept.dept_id for sys_dept in SysDept.query.all()]
-    elif sys_role.role_id == 1855188956748062721:
+    elif sys_role.role_id == DIST_ADMIN:
         sys_dept = SysDept.query.filter_by(dept_id=dept_id).first()
         if sys_dept.parent_id != 1:
             ancestors = sys_dept.ancestors.split(',')
@@ -763,7 +764,6 @@ def test_connect():
         return jsonify({'code': 200})
     except Exception as e:
         logging.info(str(e))
-        print(e)
         return jsonify({'code': 203, 'msg': '连接失败，请检查数据库连接信息是否错误'})
 
 
@@ -815,8 +815,7 @@ def schedule_immediately():
     for scheduler_id in scheduler_ids:
         schedule_info = ScheduleInfo.query.filter_by(id=scheduler_id).first()
         schedule_execute_total = ScheduleExecute.query.filter_by(schedule_status='执行中').count()
-        print(schedule_execute_total)
-        print(config.get('thread'))
+        logging.debug(f"schedule_execute_total={schedule_execute_total}, thread_limit={config.get('thread')}")
         if schedule_execute_total >= config.get('thread'):
             return jsonify({'code': 203, 'msg': '超过系统任务最大执行数，请稍后再试!'})
         data['datasource_id'] = schedule_info.datasource_id
@@ -892,9 +891,9 @@ def schedule_filter_query():
     sys_role = SysRole.query.join(SysUserRole, SysRole.role_id == SysUserRole.role_id).join(SysUser,
                                                                                             SysUser.user_id == SysUserRole.user_id).filter_by(
         user_id=data.get('userId')).first()
-    if sys_role.role_id in (1, 1855189077904728066, 1855189303667335169):
+    if sys_role.role_id in ADMIN_ROLES:
         ids_list = [sys_dept.dept_id for sys_dept in SysDept.query.all()]
-    elif sys_role.role_id == 1855188956748062721:
+    elif sys_role.role_id == DIST_ADMIN:
         sys_dept = SysDept.query.filter_by(dept_id=dept_id).first()
         if sys_dept.parent_id != 1:
             ancestors = sys_dept.ancestors.split(',')
@@ -1116,9 +1115,9 @@ def exploration_filter_query():
     sys_role = SysRole.query.join(SysUserRole, SysRole.role_id == SysUserRole.role_id).join(SysUser,
                                                                                             SysUser.user_id == SysUserRole.user_id).filter_by(
         user_id=data.get('userId')).first()
-    if sys_role.role_id in (1, 1855189077904728066, 1855189303667335169):
+    if sys_role.role_id in ADMIN_ROLES:
         ids_list = [sys_dept.dept_id for sys_dept in SysDept.query.all()]
-    elif sys_role.role_id == 1855188956748062721:
+    elif sys_role.role_id == DIST_ADMIN:
         sys_dept = SysDept.query.filter_by(dept_id=dept_id).first()
         if sys_dept.parent_id != 1:
             ancestors = sys_dept.ancestors.split(',')
@@ -1456,13 +1455,13 @@ def query_resources_result():
     page = data.get('page')
     per_page = data.get('per_page')
     role_info = SysRole.query.join(SysUserRole,SysRole.role_id==SysUserRole.role_id).join(SysUser,SysUser.user_id==SysUserRole.user_id).filter_by(user_id=user_id).first()
-    if role_info.role_id in (1,1855189303667335169,1855189077904728066,1855188956748062721):
+    if role_info.role_id in ALL_MGMT_ROLES:
         sys_dept = SysDept.query.filter_by(dept_id=dept_id).first()
         if sys_dept.parent_id == 1:
             query = DataResources.query.filter_by(dept_id=dept_id)
         else:
             query = DataResources.query.filter_by(dept_id=sys_dept.parent_id)
-    elif role_info.role_id in (1855188843279556609,):
+    elif role_info.role_id in READONLY_ROLES:
         query = DataResources.query.join(DataResourcesAuth,(DataResources.id==DataResourcesAuth.data_resources_id)).filter_by(user_id=user_id)
     datasource_infos = query.paginate(page=page,per_page=per_page).items
     total = query.count()
