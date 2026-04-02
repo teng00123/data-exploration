@@ -1,0 +1,42 @@
+# 敏感配置文件 - 禁止提交到版本控制
+backend/config.yaml
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# 虚拟环境
+venv/
+env/
+.venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 日志
+*.log
+error.log
+
+# 数据文件
+data_resources/
+backups/
+*.xlsx
+*.csv
+
+# OS
+.DS_Store
+Thumbs.db

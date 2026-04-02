@@ -76,15 +76,27 @@ def backup_sqlite(database_path):
     return filepath
 
 
-def aes_decrypt(encrypted_data: str, key: str = '1234567890123456', iv: str = '1234567890123456') -> str:
+def aes_decrypt(encrypted_data: str, key: str | None = None, iv: str | None = None) -> str:
     """
-    AES/CBC/PKCS7 解密
-    :param encrypted_data: base64编码的加密字符串
-    :param key: 16/24/32字节的密钥
-    :param iv: 16字节的初始化向量
-    :return: 解密后的明文字符串
-    # TODO: 默认 key/iv 仅为占位，生产环境务必通过参数传入安全的密钥，切勿使用默认值
+    AES/CBC/PKCS7 解密。
+
+    Args:
+        encrypted_data: Base64 编码的密文
+        key: AES 密钥（16/24/32 字节字符串）。若为 None，从环境变量 AES_KEY 读取。
+        iv:  初始向量（16 字节字符串）。若为 None，从环境变量 AES_IV 读取。
+
+    Raises:
+        ValueError: key 或 iv 未配置时抛出，禁止使用弱默认值。
     """
+    if key is None:
+        key = os.environ.get('AES_KEY', '')
+    if iv is None:
+        iv = os.environ.get('AES_IV', '')
+    if not key or not iv:
+        raise ValueError(
+            "AES key and IV must be provided explicitly or via AES_KEY / AES_IV environment variables. "
+            "Default weak keys are not allowed."
+        )
     cipher = AES.new(key.encode('utf-8'), AES.MODE_CBC, iv.encode('utf-8'))
     decrypted = unpad(cipher.decrypt(base64.b64decode(encrypted_data)), AES.block_size)
     return decrypted.decode('utf-8')
@@ -146,8 +158,16 @@ def hide_middle_digits(phone_number):
 # # 从文件或环境变量中读取密钥
 # with open(BASE_DIR + '/secret.key', 'rb') as key_file:
 #     key = key_file.read()
-# 从环境变量读取 Fernet 密钥，未配置时使用内置值（生产环境务必设置 FERNET_KEY 环境变量）
-key = os.environ.get('FERNET_KEY', 'GHiC1UXbXbu3tBN-x-K8ubLZdKImj-QzgR0Nmii2MYQ=')
+# Fernet 密钥强制从环境变量读取，未配置时启动失败
+# 生成命令：python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+_fernet_key = os.environ.get('FERNET_KEY', '')
+if not _fernet_key:
+    raise RuntimeError(
+        "FERNET_KEY is not configured. "
+        "Generate one with: python -c \"from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())\" "
+        "and set it as the FERNET_KEY environment variable."
+    )
+key = _fernet_key
 cipher_suite = Fernet(key)
 
 # 加密
