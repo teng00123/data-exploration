@@ -393,7 +393,6 @@ def import_belong_system():
                         belonging_system_info.person = fill_person
                         belonging_system_info.phone = fill_person_phone
                         belonging_system_info.notes = notes
-                    db.session.commit()
                 else:
                     sys_dept = SysDept.query.filter_by(dept_id=dept_id).first()
                     if sys_dept.parent_id == 1:
@@ -447,14 +446,16 @@ def import_belong_system():
                             notes=notes,
                         )
                         db.session.add(belonging_system_info)
-                        db.session.commit()
                     else:
                         data['失败原因'] = '该系统已有一模一样系统信息'
                         fail_list.append(data)
                         continue
                 success_list.append(data)
+        # 批量提交所有新增/更新，保证原子性
+            db.session.commit()
         except Exception as e:
-            print(e)
+            logging.error(f'import_belong_system error: {e}')
+            db.session.rollback()
             return jsonify({'code': 203, "msg": "数据格式有误,请检查后重试"})
         path = BASE_DIR + f'/template/system/{str(uuid.uuid4())}.xlsx'
         if len(fail_list) > 0:
@@ -473,8 +474,15 @@ def import_belong_system():
 @exploration_bp.route('/download/belong_system', methods=['POST'])
 @custom_jwt_required
 def download_belong_system():
-    path = request.get_json().get('file_path')
-    return send_file(path, as_attachment=True, download_name='导入失败原因.xlsx')
+    # 安全校验：只允许下载服务端生成的临时文件（template/system/ 目录下的 xlsx）
+    raw_path = request.get_json().get('file_path', '')
+    allowed_base = os.path.abspath(os.path.join(BASE_DIR, 'template', 'system'))
+    safe_path = os.path.abspath(raw_path)
+    if not safe_path.startswith(allowed_base) or not safe_path.endswith('.xlsx'):
+        return jsonify({'code': 403, 'msg': '非法文件路径'}), 403
+    if not os.path.isfile(safe_path):
+        return jsonify({'code': 404, 'msg': '文件不存在'}), 404
+    return send_file(safe_path, as_attachment=True, download_name='导入失败原因.xlsx')
 
 
 @exploration_bp.route('/export/belong_system', methods=['POST'])
@@ -1359,12 +1367,13 @@ def upload_resources():
     files = request.files.getlist('file')
     dept_id = request.form['deptId']
     user_id = request.form['userId']
+    upload_dir = os.path.abspath(config.get('UPLOAD_FOLDER', './backups'))
     for file in files:
         if file.filename == '':
             return 'No selected file', 400
         if file:
-            filename = file.filename
-            save_path = config.get('excel_file') + '/' + filename
+            filename = os.path.basename(file.filename)  # 防止文件名中含路径分隔符
+            save_path = os.path.join(upload_dir, filename)
             file.save(save_path)
             data_resources = DataResources(
                 dept_id=dept_id,
@@ -1374,7 +1383,8 @@ def upload_resources():
                 update_id=user_id
             )
             db.session.add(data_resources)
-            db.session.commit()
+    # 所有文件一次性提交，保证事务原子性
+    db.session.commit()
     return jsonify({"code": 200})
 
 
@@ -1602,10 +1612,11 @@ def resources_auth():
     data = request.get_json()
     user_ids = data.get('user_ids')
     data_resources_id = data.get('data_resources_id')
+    # 批量删除旧授权，单次 commit
     data_resources_auths = DataResourcesAuth.query.filter_by(data_resources_id=data_resources_id).all()
     for data_resources_auth in data_resources_auths:
         db.session.delete(data_resources_auth)
-        db.session.commit()
+    # 批量新增授权，单次 commit
     for user_id in user_ids:
         data_resources_auth = DataResourcesAuth(
             user_id=user_id,
@@ -1632,6 +1643,18 @@ def download_resources():
     data = request.get_json()
     data_resources_id = data.get('data_resources_id')
     data_resources = DataResources.query.filter_by(id=data_resources_id).first()
+    if not data_resources:
+        return jsonify({'code': 404, 'msg': '资源不存在'}), 404
+
+    # 安全校验：确保文件路径在允许的上传目录内，防止路径穿越
+    allowed_base = os.path.abspath(config.get('UPLOAD_FOLDER', './backups'))
+    safe_path = os.path.abspath(data_resources.file_path)
+    if not safe_path.startswith(allowed_base):
+        logging.warning(f"Path traversal attempt blocked: {data_resources.file_path}")
+        return jsonify({'code': 403, 'msg': '非法文件路径'}), 403
+    if not os.path.isfile(safe_path):
+        return jsonify({'code': 404, 'msg': '文件不存在'}), 404
+
     data_resources.download_total += 1
     data_resources_download_log = DataResourcesDownloadLog(
         user_id=data.get('userId'),
@@ -1639,7 +1662,7 @@ def download_resources():
     )
     db.session.add(data_resources_download_log)
     db.session.commit()
-    return send_file(data_resources.file_path,as_attachment=True,download_name=data_resources.file_name)
+    return send_file(safe_path, as_attachment=True, download_name=data_resources.file_name)
 
 
 @exploration_bp.route('/query/download/record', methods=['POST'])
